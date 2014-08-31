@@ -1,0 +1,49 @@
+body  {
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    margin: 1em auto;
+    width: 900px;
+}
+
+label, input, textarea {
+    display: block;
+    float: left;
+}
+
+label {	
+    text-align: right;
+    width: 200px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+input{
+    background: #F5DEB3;
+}
+
+#botoes input{
+    width: 100px;
+}
+
+#logo{
+    display: block;
+    width: 230px;
+    height: 56px;
+    margin: 0px auto;
+    cursor: pointer;
+}
+
+textarea{
+    max-width: 600px;
+}
+
+br {
+    clear: left;
+}
+
+date{
+    max-width: 50px;
+}
