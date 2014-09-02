@@ -6,6 +6,7 @@
 package dao;
 
 import conexao.Hibernate4Util;
+import java.util.Date;
 import java.util.List;
 import model.Time;
 import org.hibernate.HibernateException;
@@ -62,6 +63,60 @@ public class TimeDao
             Session sessao = Hibernate4Util.getSessionFactory();
             Transaction transacao = sessao.beginTransaction();
             Query consulta = sessao.createQuery("from Time");
+            List<Time> resultado = consulta.list();
+            transacao.commit();
+            return resultado;
+        }
+        catch (HibernateException e)
+        {
+            System.out.println("Não foi possível selecionar contatos. Erro: " + e.getMessage());
+            throw new HibernateException(e);
+        }
+    }
+
+    /**
+     * Obtém lista com todos os times do banco
+     *
+     * @param nome Nome a ser filtrado
+     * @return Lista com todos os times do banco
+     */
+    public List<Time> listarPorNome(String nome)
+    {
+        try
+        {
+            Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
+            Query consulta = sessao.createQuery("from Time where nome like :nome");
+            consulta.setString("nome", "%" + nome + "%");
+
+            List<Time> resultado = consulta.list();
+            transacao.commit();
+            return resultado;
+        }
+        catch (HibernateException e)
+        {
+            System.out.println("Não foi possível selecionar contatos. Erro: " + e.getMessage());
+            throw new HibernateException(e);
+        }
+    }
+
+    /**
+     * Obtém lista com todos os times do banco
+     *
+     * @param dataIni Data inicial a ser filtrada
+     * @param dataFin Data final a ser filtrada
+     * @return Lista com todos os times do banco
+     */
+    public List<Time> listarPorDataFundacao(Date dataIni, Date dataFin)
+    {
+        try
+        {
+            Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
+            Query consulta = sessao.createQuery("from Time where dataFundacao between :dataini AND :datafin");
+            consulta.setDate("dataini", dataIni);
+            consulta.setDate("datafin", dataFin);
+
             List<Time> resultado = consulta.list();
             transacao.commit();
             return resultado;

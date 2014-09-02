@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Gerenciamento de Jogos</title>
+        <link href="css/Estilo.css" rel="stylesheet" type="text/css" media="all"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+        <c:set var="nav" value="C" scope="session"/>
+        <ui:include src="cabecalho.xhtml"></ui:include>
+        <div id="container">
+            <h:form>
+                <fieldset>
+                    <legend>Dados do Time</legend>
+                    <h:panelGrid columns="2">   
+                        <h:outputLabel value="Nome" for="txtNome" />
+                        <h:inputText id="txtNome" styleClass="form-control" maxlength="100" value="#{timeBean.time.nome}"/>
+                        <h:outputLabel value="Data de Fundação" for="txtDataFundacao" />
+                        <h:inputText id="txtDataFundacao" styleClass="form-control" size="20" value="#{timeBean.time.dataFundacao}"
+                                     required="true">
+                            <f:convertDateTime type="date" pattern="dd/MM/yyyy" dateStyle="medium" locale="pt_BR" timeZone="GMT-3"/>
+                        </h:inputText>
+                        <h:outputLabel value="Cidade" for="txtCidade" />
+                        <h:inputText id="txtCidade" styleClass="form-control" maxlength="100" value="#{timeBean.time.cidade}"/>
+                        <h:outputLabel value="Site" for="txtSite" />
+                        <h:inputText id="txtSite" styleClass="form-control" maxlength="100" value="#{timeBean.time.site}"/>
+                        <h:outputLabel value="E-mail" for="txtEmail" />
+                        <h:inputText id="txtEmail" styleClass="form-control" maxlength="100" value="#{timeBean.time.email}"/>
+                        <h:outputLabel value="Fone" for="txtFone" />
+                        <h:inputText id="txtFone" styleClass="form-control" maxlength="100" value="#{timeBean.time.fone}"/>
+                        <h:outputLabel value="Endereço" for="txtEndereco" />
+                        <h:inputText id="txtEndereco" styleClass="form-control" maxlength="100" value="#{timeBean.time.endereco}"/>
+                        <h:outputLabel value="Descrição" for="txtDescricao" />
+                        <h:inputText id="txtDescricao" styleClass="form-control" maxlength="100" value="#{timeBean.time.descricao}"/>
+                        <label>&nbsp; </label>
+                        <h:commandButton id="btnInserir" styleClass="btn btn-default"
+                                         rendered="#{!timeBean.time.editando}" value="Inserir" action="#{timeBean.gravar}"/>
+                        <h:commandButton id="btnSalvar" styleClass="btn btn-default"
+                                         rendered="#{timeBean.time.editando}" value="Salvar" action="#{timeBean.editar}"/>
+                    </h:panelGrid>
+                </fieldset>
+            </h:form>
+        </div>
+
+        <script src="js/jquery.min.js"/>
+        <script src="js/funcoes.js"/>
+        <script src="js/bootstrap.min.js"/>
+    </h:body>
+</html>
