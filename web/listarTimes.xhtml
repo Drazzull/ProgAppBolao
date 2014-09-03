@@ -20,51 +20,49 @@ and open the template in the editor.
         <c:set var="nav" value="L" scope="session"/>
         <ui:include src="cabecalho.xhtml"/>
         <div id="container">
-            <h:form styleClass="form-horizontal">
+            <h:form id="frmPrincipal" styleClass="form-horizontal">
                 <fieldset>
-                    <h:form>
-                        <legend>Filtros a serem Aplicados</legend>
-                        <div class="form-group">
-                            <h:outputLabel styleClass="col-sm-2 control-label" for="cmbStatus" value="Status" />
-                            <div class="col-sm-10">
-                                <h:selectOneMenu class="form-control" id="cmbStatus" value="#{status}">
-                                    <f:selectItem itemValue="" itemLabel="Selecione o tipo do filtro..." />
-                                    <f:selectItem itemValue="N" itemLabel="Nome do Time"/>
-                                    <f:selectItem itemValue="D" itemLabel="Entre Data de Fundação"/>
-                                    <f:ajax render="@form" />
-                                </h:selectOneMenu>
-                            </div>
+                    <legend>Filtros a serem Aplicados</legend>
+                    <div class="form-group">
+                        <h:outputLabel styleClass="col-sm-2 control-label" for="cmbStatus" value="Status" />
+                        <div class="col-sm-10">
+                            <h:selectOneMenu class="form-control" id="cmbStatus" value="#{status}">
+                                <f:selectItem itemValue="" itemLabel="Selecione o tipo do filtro..." />
+                                <f:selectItem itemValue="N" itemLabel="Nome do Time"/>
+                                <f:selectItem itemValue="D" itemLabel="Entre Data de Fundação"/>
+                                <f:ajax render="@form" />
+                            </h:selectOneMenu>
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <h:outputLabel for="txtFiltrarUnico" styleClass="col-sm-2 control-label" value="Nome" />
-                            <div class="col-sm-10">
-                                <h:inputText id="txtFiltrarUnico" disabled="#{status == 'D'}" styleClass="form-control" value='#{timeBean.nomeBusca}'/>
-                            </div>
+                    <div class="form-group">
+                        <h:outputLabel for="txtFiltrarUnico" styleClass="col-sm-2 control-label" value="Nome" />
+                        <div class="col-sm-10">
+                            <h:inputText id="txtFiltrarUnico" disabled="#{status == 'D'}" styleClass="form-control" value='#{timeBean.nomeBusca}'/>
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <h:outputLabel for="txtDataInicial"
-                                           styleClass="col-sm-2 control-label"
-                                           value="Data Inicial" />
-                            <div class="col-sm-10">
-                                <h:inputText id="txtDataInicial" disabled="#{status == 'N'}" styleClass="form-control" value='#{timeBean.dataInicialBusca}'>
-                                    <f:convertDateTime type="date" pattern="dd/MM/yyyy" dateStyle="medium" locale="pt_BR" timeZone="GMT-3"/>
-                                </h:inputText>
-                            </div>
+                    <div class="form-group">
+                        <h:outputLabel for="txtDataInicial"
+                                       styleClass="col-sm-2 control-label"
+                                       value="Data Inicial" />
+                        <div class="col-sm-10">
+                            <h:inputText id="txtDataInicial" disabled="#{status == 'N'}" styleClass="form-control" value='#{timeBean.dataInicialBusca}'>
+                                <f:convertDateTime type="date" pattern="dd/MM/yyyy" dateStyle="medium" locale="pt_BR" timeZone="GMT-3"/>
+                            </h:inputText>
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <h:outputLabel for="txtDataFinal"
-                                           styleClass="col-sm-2 control-label"
-                                           value="Data Final" />
-                            <div class="col-sm-10">
-                                <h:inputText id="txtDataFinal" disabled="#{status == 'N'}" styleClass="form-control" value='#{timeBean.dataFinalBusca}'>
-                                    <f:convertDateTime type="date" pattern="dd/MM/yyyy" dateStyle="medium" locale="pt_BR" timeZone="GMT-3"/>
-                                </h:inputText>
-                            </div>
+                    <div class="form-group">
+                        <h:outputLabel for="txtDataFinal"
+                                       styleClass="col-sm-2 control-label"
+                                       value="Data Final" />
+                        <div class="col-sm-10">
+                            <h:inputText id="txtDataFinal" disabled="#{status == 'N'}" styleClass="form-control" value='#{timeBean.dataFinalBusca}'>
+                                <f:convertDateTime type="date" pattern="dd/MM/yyyy" dateStyle="medium" locale="pt_BR" timeZone="GMT-3"/>
+                            </h:inputText>
                         </div>
-                    </h:form>
+                    </div>
 
                     <div class="form-group">
                         <h:outputLabel value="" for="btnFiltrar"/>
@@ -75,7 +73,7 @@ and open the template in the editor.
                 <fieldset>
                     <legend>Listagem de Times</legend>
 
-                    <h:dataTable id="itens" rendered='#{status == null}' value="#{timeBean.times}" var="item" border="1" width="100%">
+                    <h:dataTable id="itens" value="#{timeBean.times}" var="item" border="1" width="100%">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Código" />
@@ -144,181 +142,13 @@ and open the template in the editor.
                             <f:facet name="header">
                                 <h:outputText value="Editar" />
                             </f:facet>
-                            <h:commandButton styleClass="btn btn-default" value="Editar" action="#{timeBean.editar(item)}"/>
+                            <h:commandButton id="btnEditar" styleClass="btn btn-default" value="Editar" action="#{timeBean.editarItem(item)}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Excluir" />
                             </f:facet>
-                            <h:commandButton styleClass="btn btn-default" value="Excluir" action="#{timeBean.excluir(item)}"/>
-                        </h:column>
-                    </h:dataTable>
-
-                    <h:dataTable rendered='#{status == "N"}'
-                                 id="itensNome"
-                                 value="#{timeBean.getTimesPorNome()}"
-                                 var="item"
-                                 border="1"
-                                 width="100%">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Código" />
-                            </f:facet>
-                            <h:outputText value="#{item.codigo}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Nome" />
-                            </f:facet>
-                            <h:outputText value="#{item.nome}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Data de Cadastro" />
-                            </f:facet>
-                            <h:outputFormat value="{0, date, dd/MM/YYYY}">
-                                <f:param value="#{item.dataCadastro}" />
-                            </h:outputFormat>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Data de Fundação" />
-                            </f:facet>
-                            <h:outputFormat value="{0, date, dd/MM/YYYY}">
-                                <f:param value="#{item.dataFundacao}" />
-                            </h:outputFormat>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Cidade" />
-                            </f:facet>
-                            <h:outputText value="#{item.cidade}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Site" />
-                            </f:facet>
-                            <h:outputText value="#{item.site}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="E-mail" />
-                            </f:facet>
-                            <h:outputText value="#{item.email}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Fone" />
-                            </f:facet>
-                            <h:outputText value="#{item.fone}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Endereço" />
-                            </f:facet>
-                            <h:outputText value="#{item.endereco}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Descrição" />
-                            </f:facet>
-                            <h:outputText value="#{item.descricao}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Editar" />
-                            </f:facet>
-                            <h:commandButton styleClass="btn btn-default" value="Editar" action="#{timeBean.editar(item)}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Excluir" />
-                            </f:facet>
-                            <h:commandButton styleClass="btn btn-default" value="Excluir" action="#{timeBean.excluir(item)}"/>
-                        </h:column>
-                    </h:dataTable>
-
-                    <h:dataTable rendered='#{status == "D"}'
-                                 id="itensDataFundacao"
-                                 value="#{timeBean.getTimesPorDataFundacao()}"
-                                 var="item"
-                                 border="1"
-                                 width="100%">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Código" />
-                            </f:facet>
-                            <h:outputText value="#{item.codigo}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Nome" />
-                            </f:facet>
-                            <h:outputText value="#{item.nome}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Data de Cadastro" />
-                            </f:facet>
-                            <h:outputFormat value="{0, date, dd/MM/YYYY}">
-                                <f:param value="#{item.dataCadastro}" />
-                            </h:outputFormat>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Data de Fundação" />
-                            </f:facet>
-                            <h:outputFormat value="{0, date, dd/MM/YYYY}">
-                                <f:param value="#{item.dataFundacao}" />
-                            </h:outputFormat>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Cidade" />
-                            </f:facet>
-                            <h:outputText value="#{item.cidade}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Site" />
-                            </f:facet>
-                            <h:outputText value="#{item.site}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="E-mail" />
-                            </f:facet>
-                            <h:outputText value="#{item.email}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Fone" />
-                            </f:facet>
-                            <h:outputText value="#{item.fone}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Endereço" />
-                            </f:facet>
-                            <h:outputText value="#{item.endereco}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Descrição" />
-                            </f:facet>
-                            <h:outputText value="#{item.descricao}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Editar" />
-                            </f:facet>
-                            <h:commandButton styleClass="btn btn-default" value="Editar" action="#{timeBean.editar(item)}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Excluir" />
-                            </f:facet>
-                            <h:commandButton styleClass="btn btn-default" value="Excluir" action="#{timeBean.excluir(item)}"/>
+                            <h:commandButton id="btnExcluir" styleClass="btn btn-default" value="Excluir" action="#{timeBean.excluirItem(item)}"/>
                         </h:column>
                     </h:dataTable>
                 </fieldset>

@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import model.Time;
 
 @ManagedBean
@@ -30,8 +31,7 @@ public class TimeBean
     {
         return this.time;
     }
-    
-    
+
     public String getNomeBusca()
     {
         return nomeBusca;
@@ -62,43 +62,43 @@ public class TimeBean
         this.dataFinalBusca = dataFinalBusca;
     }
 
-    public String gravar() throws IOException
+    public List<Time> getTimes()
+    {
+        if (this.nomeBusca != null)
+        {
+            return this.timeDao.listarPorNome(this.nomeBusca);
+        }
+
+        if ((this.dataInicialBusca != null) && (this.dataFinalBusca != null))
+        {
+            return this.timeDao.listarPorDataFundacao(this.dataInicialBusca, this.dataFinalBusca);
+        }
+
+        return this.timeDao.listar();
+    }
+
+    public String salvarNovo() throws IOException
     {
         this.timeDao.salvar(this.getTime());
         return "listarTimes.xhtml";
     }
 
-    public List<Time> getTimes()
-    {
-        return this.timeDao.listar();
-    }
-
-    public String editar(Time time)
+    public String editarItem(Time time)
     {
         this.time = time;
         this.time.setEditando(true);
         return "cadastroTime.xhtml";
     }
 
-    public String editar()
+    public String salvarEdicao()
     {
         this.timeDao.atualizar(this.time);
         return "listarTimes.xhtml";
     }
 
-    public String excluir(Time time)
+    public String excluirItem(Time time) throws IOException
     {
         this.timeDao.excluir(time);
         return "listarTimes.xhtml";
-    }
-
-    public List<Time> getTimesPorNome()
-    {
-        return this.timeDao.listarPorNome(this.nomeBusca);
-    }
-
-    public List<Time> getTimesPorDataFundacao()
-    {
-        return this.timeDao.listarPorDataFundacao(this.dataInicialBusca, this.dataFinalBusca);
     }
 }

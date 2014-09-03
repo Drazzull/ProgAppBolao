@@ -28,7 +28,7 @@ public class Time
 
     public Time()
     {
-        this.dataCadastro = new Date(System.currentTimeMillis());
+            this.dataCadastro = new Date(System.currentTimeMillis());
     }
 
     /**
@@ -38,7 +38,7 @@ public class Time
      */
     public long getCodigo()
     {
-        return codigo;
+        return this.codigo;
     }
 
     /**
@@ -58,7 +58,7 @@ public class Time
      */
     public String getNome()
     {
-        return nome;
+        return this.nome;
     }
 
     /**
@@ -77,8 +77,8 @@ public class Time
      * @return Data de cadastro do time
      */
     public Date getDataCadastro()
-    {
-        return dataCadastro;
+    {        
+        return this.dataCadastro;
     }
 
     /**

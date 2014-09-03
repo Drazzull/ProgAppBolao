@@ -86,7 +86,7 @@ public class TimeDao
         {
             Session sessao = Hibernate4Util.getSessionFactory();
             Transaction transacao = sessao.beginTransaction();
-            Query consulta = sessao.createQuery("from Time where nome like :nome");
+            Query consulta = sessao.createQuery("from Time where nome like :nome order by nome, dataFundacao");
             consulta.setString("nome", "%" + nome + "%");
 
             List<Time> resultado = consulta.list();
@@ -113,7 +113,7 @@ public class TimeDao
         {
             Session sessao = Hibernate4Util.getSessionFactory();
             Transaction transacao = sessao.beginTransaction();
-            Query consulta = sessao.createQuery("from Time where dataFundacao between :dataini AND :datafin");
+            Query consulta = sessao.createQuery("from Time where dataFundacao between :dataini AND :datafin order by dataFundacao desc, codigo");
             consulta.setDate("dataini", dataIni);
             consulta.setDate("datafin", dataFin);
 
