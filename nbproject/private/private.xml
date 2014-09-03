@@ -5,7 +5,9 @@
         <group>
             <file>file:/D:/Users/Arthur/Documents/NetBeansProjects/ProgAppBolao/src/java/model/Time.java</file>
             <file>file:/D:/Users/Arthur/Documents/NetBeansProjects/ProgAppBolao/web/cadastroTime.xhtml</file>
+            <file>file:/D:/Users/Arthur/Documents/NetBeansProjects/ProgAppBolao/web/css/Estilo.css</file>
             <file>file:/D:/Users/Arthur/Documents/NetBeansProjects/ProgAppBolao/web/listarTimes.xhtml</file>
+            <file>file:/D:/Users/Arthur/Documents/NetBeansProjects/ProgAppBolao/web/cabecalho.xhtml</file>
             <file>file:/D:/Users/Arthur/Documents/NetBeansProjects/ProgAppBolao/web/index.xhtml</file>
             <file>file:/D:/Users/Arthur/Documents/NetBeansProjects/ProgAppBolao/src/java/model/Time.hbm.xml</file>
         </group>
