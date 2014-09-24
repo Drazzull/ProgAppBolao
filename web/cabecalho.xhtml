@@ -6,7 +6,8 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <link href="css/Estilo.css" rel="stylesheet" type="text/css" media="all"/>
         <link href="css/bootstrap.min.css" rel="stylesheet"/>
@@ -31,8 +32,9 @@ and open the template in the editor.
                     <li class="#{nav == 'C' ? 'dropdown active' : 'dropdown'}">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cadastros<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="cadastroTime.xhtml">Time</a></li>
-                            <!--><li class="divider"></li><-->
+                            <li>
+                                <a href="cadastroTime.xhtml">Time</a>
+                            </li>
                         </ul>
                     </li>
 

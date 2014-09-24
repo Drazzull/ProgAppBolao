@@ -21,10 +21,10 @@ and open the template in the editor.
         <c:set var="nav" value="C" scope="session"/>
         <ui:include src="cabecalho.xhtml"></ui:include>
         <div id="container">
-            <h:form>
+            <h:form enctype="multipart/form-data">
                 <fieldset>
                     <legend>Dados do Time</legend>
-                    <h:panelGrid columns="2">   
+                    <h:panelGrid columns="2">
                         <h:outputLabel value="Nome" for="txtNome" />
                         <h:inputText id="txtNome" styleClass="form-control" maxlength="100" value="#{timeBean.time.nome}"/>
                         <h:outputLabel value="Data de Fundação" for="txtDataFundacao" />
@@ -44,11 +44,10 @@ and open the template in the editor.
                         <h:inputText id="txtEndereco" styleClass="form-control" maxlength="100" value="#{timeBean.time.endereco}"/>
                         <h:outputLabel value="Descrição" for="txtDescricao" />
                         <h:inputTextarea id="txtDescricao" styleClass="form-control" value="#{timeBean.time.descricao}"/>
+                        <h:outputLabel value="Logo" for="inpLogo" />
+                        <h:inputFile styleClass="form-control" id="inpLogo" value="#{timeBean.time.logoUpload}"/>
                         <label>&nbsp; </label>
-                        <h:commandButton id="btnInserir" styleClass="btn btn-default"
-                                         rendered="#{!timeBean.time.editando}" value="Inserir" action="#{timeBean.salvarNovo}"/>
-                        <h:commandButton id="btnSalvar" styleClass="btn btn-default"
-                                         rendered="#{timeBean.time.editando}" value="Salvar" action="#{timeBean.salvarEdicao}"/>
+                        <h:commandButton id="btnInserir" styleClass="btn btn-default" value="Salvar" action="#{timeBean.salvar}"/>
                     </h:panelGrid>
                 </fieldset>
             </h:form>

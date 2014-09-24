@@ -11,13 +11,16 @@ package controller;
  */
 import dao.TimeDao;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.servlet.http.Part;
 import model.Time;
 
 @ManagedBean
+@SessionScoped
 public class TimeBean
 {
 
@@ -26,6 +29,7 @@ public class TimeBean
     private String nomeBusca;
     private Date dataInicialBusca;
     private Date dataFinalBusca;
+    private Part logoUpload;
 
     public Time getTime()
     {
@@ -62,6 +66,16 @@ public class TimeBean
         this.dataFinalBusca = dataFinalBusca;
     }
 
+    public Part getLogoUpload()
+    {
+        return logoUpload;
+    }
+
+    public void setLogoUpload(Part logoUpload)
+    {
+        this.logoUpload = logoUpload;
+    }
+
     public List<Time> getTimes()
     {
         if (this.nomeBusca != null)
@@ -77,28 +91,40 @@ public class TimeBean
         return this.timeDao.listar();
     }
 
-    public String salvarNovo() throws IOException
+    public String salvar() throws IOException, SQLException
     {
-        this.timeDao.salvar(this.getTime());
-        return "listarTimes.xhtml";
+        /*try
+        {
+            String arquivo = new Scanner(this.logoUpload.getInputStream()).useDelimiter("\\A").next();
+            this.time.setLogoUpload(new SerialBlob(arquivo.getBytes()));
+        }
+        catch (IOException e)
+        {
+        }*/
+
+        if (this.time.isEditando())
+        {
+            this.timeDao.atualizar(this.time);
+            this.time = new Time();
+            return "listarTimes";
+        }
+
+        this.timeDao.salvar(this.time);
+        this.time = new Time();
+        return "listarTimes";
     }
 
     public String editarItem(Time time)
     {
         this.time = time;
         this.time.setEditando(true);
-        return "cadastroTime.xhtml";
-    }
-
-    public String salvarEdicao()
-    {
-        this.timeDao.atualizar(this.time);
-        return "listarTimes.xhtml";
+        return "cadastroTime";
     }
 
     public String excluirItem(Time time) throws IOException
     {
         this.timeDao.excluir(time);
-        return "listarTimes.xhtml";
+        this.time = new Time();
+        return "listarTimes";
     }
 }
