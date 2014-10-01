@@ -48,7 +48,7 @@ public class Apostador implements Serializable{
     private String apelido;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "time_preferecia")
+    @JoinColumn(name = "cod_time")
     private Time timeDePreferencia;
     
     @ManyToOne(fetch = FetchType.LAZY)
