@@ -11,9 +11,12 @@ import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -44,10 +47,12 @@ public class Apostador implements Serializable{
     @Column(name = "apelido", length = 100)
     private String apelido;
     
-    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "time_preferecia")
     private Time timeDePreferencia;
     
-    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cod_grupo")
     private Grupo grupo;
 
     public Apostador() {
