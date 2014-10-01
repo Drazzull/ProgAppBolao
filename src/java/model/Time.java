@@ -28,9 +28,9 @@ public class Time implements Serializable
 {
 
     @Id
-    @Column(name = "id_time")
+    @Column(name = "cod_time")
     @GeneratedValue
-    private long id;
+    private long codigo;
     
     @Column(length = 150, nullable = false)
     private String nome;
@@ -63,7 +63,7 @@ public class Time implements Serializable
     
     @Lob
     @Column(name="logo", columnDefinition = "LONGBLOB", nullable = true)
-    private Part logoUpload;
+    private byte[] logoUpload;
     
     @Transient
     private boolean editando;
@@ -78,19 +78,19 @@ public class Time implements Serializable
      *
      * @return Código identificador do time
      */
-    public long getId()
+    public long getCodigo()
     {
-        return this.id;
+        return this.codigo;
     }
 
     /**
      * Define o identificador do time
      *
-     * @param id Código identificador do time
+     * @param codigo Código identificador do time
      */
-    public void setId(long id)
+    public void setCodigo(long codigo)
     {
-        this.id = id;
+        this.codigo = codigo;
     }
 
     /**
@@ -293,12 +293,12 @@ public class Time implements Serializable
         this.editando = editando;
     }
 
-    public Part getLogoUpload()
+    public byte[] getLogoUpload()
     {
         return logoUpload;
     }
 
-    public void setLogoUpload(Part logoUpload)
+    public void setLogoUpload(byte[] logoUpload)
     {
         this.logoUpload = logoUpload;
     }
@@ -307,7 +307,7 @@ public class Time implements Serializable
     public int hashCode()
     {
         int hash = 7;
-        hash = 59 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 59 * hash + (int) (this.codigo ^ (this.codigo >>> 32));
         return hash;
     }
 
@@ -324,6 +324,6 @@ public class Time implements Serializable
 
         }
         final Time other = (Time) obj;
-        return this.id == other.id;
+        return this.codigo == other.codigo;
     }
 }
