@@ -10,8 +10,11 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -19,16 +22,22 @@ import javax.persistence.Table;
  * @author José Luiz
  */
 @Entity
-@Table(name = "grupo")
-public class Grupo implements Serializable{
+@Table(name = "time_competicao")
+public class TimeCompeticao implements Serializable{
     @Id
     @GeneratedValue
-    @Column(name = "cod_grupo", nullable = false)
+    @Column(name = "cod_time_competicao", nullable = false)
     private Integer codigo;
-    @Column(name = "nome", length = 100, nullable = false)
-    private String nome;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cod_time")
+    private Time time;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cod_competicao")
+    private Competicao competicao;
 
-    public Grupo() {
+    public TimeCompeticao() {
     }
 
     public Integer getCodigo() {
@@ -39,17 +48,25 @@ public class Grupo implements Serializable{
         this.codigo = codigo;
     }
 
-    public String getNome() {
-        return nome;
+    public Time getTime() {
+        return time;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTime(Time time) {
+        this.time = time;
+    }
+
+    public Competicao getCompeticao() {
+        return competicao;
+    }
+
+    public void setCompeticao(Competicao competicao) {
+        this.competicao = competicao;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 5;
         hash = 47 * hash + Objects.hashCode(this.codigo);
         return hash;
     }
@@ -62,7 +79,7 @@ public class Grupo implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Grupo other = (Grupo) obj;
+        final TimeCompeticao other = (TimeCompeticao) obj;
         if (!Objects.equals(this.codigo, other.codigo)) {
             return false;
         }

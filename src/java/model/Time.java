@@ -7,16 +7,15 @@ package model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-import javax.servlet.http.Part;
 
 /**
  *
@@ -24,53 +23,38 @@ import javax.servlet.http.Part;
  */
 @Entity
 @Table(name = "time")
-public class Time implements Serializable
-{
+public class Time implements Serializable{
 
     @Id
-    @Column(name = "cod_time")
     @GeneratedValue
-    private long codigo;
-    
-    @Column(length = 150, nullable = false)
+    @Column(name = "cod_time", nullable = false)
+    private Integer codigo;
+    @Column(name = "nome", length = 100, nullable = false)
     private String nome;
-    
     @Temporal(TemporalType.DATE)
-    @Column(name="dt_cadastro", nullable = false)
+    @Column(name = "dt_cadastro", nullable = false)
     private Date dataCadastro;
-    
     @Temporal(TemporalType.DATE)
-    @Column(name="dt_fundacao", nullable = false)
+    @Column(name = "dt_fundacao", nullable = false)
     private Date dataFundacao;
-    
-    @Column(length = 150, nullable = false)
+    @Column(name = "cidade", nullable = false)
     private String cidade;
-    
-    @Column(length = 150, nullable = true)
+    @Column(name = "site", nullable = true)
     private String site;
-    
-    @Column(length = 150, nullable = true)
+    @Column(name = "email", nullable = false)
     private String email;
-    
-    @Column(length = 20, nullable = true)
+    @Column(name = "fone", nullable = false)
     private String fone;
-    
-    @Column(length = 150, nullable = true)
+    @Column(name = "endereco", nullable = true)
     private String endereco;
-    
-    @Column(length = 150, nullable = true)
+    @Column(name = "descricao", nullable = false)
     private String descricao;
-    
-    @Lob
-    @Column(name="logo", columnDefinition = "LONGBLOB", nullable = true)
-    private byte[] logoUpload;
-    
     @Transient
     private boolean editando;
 
     public Time()
     {
-        this.dataCadastro = new Date(System.currentTimeMillis());
+            this.dataCadastro = new Date(System.currentTimeMillis());
     }
 
     /**
@@ -88,7 +72,7 @@ public class Time implements Serializable
      *
      * @param codigo Código identificador do time
      */
-    public void setCodigo(long codigo)
+    public void setCodigo(Integer codigo)
     {
         this.codigo = codigo;
     }
@@ -119,7 +103,7 @@ public class Time implements Serializable
      * @return Data de cadastro do time
      */
     public Date getDataCadastro()
-    {
+    {        
         return this.dataCadastro;
     }
 
@@ -293,16 +277,6 @@ public class Time implements Serializable
         this.editando = editando;
     }
 
-    public byte[] getLogoUpload()
-    {
-        return logoUpload;
-    }
-
-    public void setLogoUpload(byte[] logoUpload)
-    {
-        this.logoUpload = logoUpload;
-    }
-
     @Override
     public int hashCode()
     {
@@ -324,6 +298,6 @@ public class Time implements Serializable
 
         }
         final Time other = (Time) obj;
-        return this.codigo == other.codigo;
+        return Objects.equals(this.codigo, other.codigo);
     }
 }

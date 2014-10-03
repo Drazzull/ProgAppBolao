@@ -33,7 +33,7 @@ import javax.persistence.UniqueConstraint;
 public class Apostador implements Serializable{
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "cod_apostador")
+    @Column(name = "cod_apostador", nullable = false)
     private Integer codigo;
     @Column(name = "nome", length = 100, nullable = false)
     private String nome;
