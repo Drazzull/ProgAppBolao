@@ -45,7 +45,7 @@ and open the template in the editor.
                         <h:outputLabel value="Descrição" for="txtDescricao" />
                         <h:inputTextarea id="txtDescricao" styleClass="form-control" value="#{timeBean.time.descricao}"/>
                         <h:outputLabel value="Logo" for="inpLogo" />
-                        <h:inputFile styleClass="form-control" id="inpLogo" value="#{timeBean.time.logoUpload}"/>
+                        <h:inputFile styleClass="form-control" id="inpLogo" value="#{timeBean.logoUpload}"/>
                         <label>&nbsp; </label>
                         <h:commandButton id="btnInserir" styleClass="btn btn-default" value="Salvar" action="#{timeBean.salvar}"/>
                     </h:panelGrid>

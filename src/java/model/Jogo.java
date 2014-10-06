@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.io.Serializable;
@@ -27,127 +26,149 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "jogo")
-public class Jogo implements Serializable{
+public class Jogo implements Serializable
+{
+
     @Id
     @GeneratedValue
     @Column(name = "cod_jogo", nullable = false)
     private Integer codigo;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cod_time")
-    @Column(name = "cod_time1")
+    @JoinColumn(name = "cod_time1", referencedColumnName = "cod_time")
     private Time time1;
+
     @Column(name = "placar_time1", nullable = false)
     private Integer placarTime1;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cod_time")
-    @Column(name = "cod_time2")
+    @JoinColumn(name = "cod_time2", referencedColumnName = "cod_time")
     private Time time2;
+
     @Column(name = "placar_time2", nullable = false)
     private Integer placarTime2;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "dt_jogo")
     private Date dataJogo;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cod_time")
-    @Column(name = "vencedor")
+    @JoinColumn(name = "vencedor", referencedColumnName = "cod_time")
     private Time vencedor;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cod_rodada")
     private Rodada rodada;
 
-    public Jogo() {
+    public Jogo()
+    {
     }
 
-    public Integer getCodigo() {
+    public Integer getCodigo()
+    {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
+    public void setCodigo(Integer codigo)
+    {
         this.codigo = codigo;
     }
 
-    public Time getTime1() {
+    public Time getTime1()
+    {
         return time1;
     }
 
-    public void setTime1(Time time1) {
+    public void setTime1(Time time1)
+    {
         this.time1 = time1;
     }
 
-    public Integer getPlacarTime1() {
+    public Integer getPlacarTime1()
+    {
         return placarTime1;
     }
 
-    public void setPlacarTime1(Integer placarTime1) {
+    public void setPlacarTime1(Integer placarTime1)
+    {
         this.placarTime1 = placarTime1;
     }
 
-    public Time getTime2() {
+    public Time getTime2()
+    {
         return time2;
     }
 
-    public void setTime2(Time time2) {
+    public void setTime2(Time time2)
+    {
         this.time2 = time2;
     }
 
-    public Integer getPlacarTime2() {
+    public Integer getPlacarTime2()
+    {
         return placarTime2;
     }
 
-    public void setPlacarTime2(Integer placarTime2) {
+    public void setPlacarTime2(Integer placarTime2)
+    {
         this.placarTime2 = placarTime2;
     }
 
-    public Date getDataJogo() {
+    public Date getDataJogo()
+    {
         return dataJogo;
     }
 
-    public void setDataJogo(Date dataJogo) {
+    public void setDataJogo(Date dataJogo)
+    {
         this.dataJogo = dataJogo;
     }
 
-    public Time getVencedor() {
+    public Time getVencedor()
+    {
         return vencedor;
     }
 
-    public void setVencedor(Time vencedor) {
+    public void setVencedor(Time vencedor)
+    {
         this.vencedor = vencedor;
     }
 
-    public Rodada getRodada() {
+    public Rodada getRodada()
+    {
         return rodada;
     }
 
-    public void setRodada(Rodada rodada) {
+    public void setRodada(Rodada rodada)
+    {
         this.rodada = rodada;
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         int hash = 7;
         hash = 41 * hash + Objects.hashCode(this.codigo);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
+    public boolean equals(Object obj)
+    {
+        if (obj == null)
+        {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass())
+        {
             return false;
         }
         final Jogo other = (Jogo) obj;
-        if (!Objects.equals(this.codigo, other.codigo)) {
+        if (!Objects.equals(this.codigo, other.codigo))
+        {
             return false;
         }
         return true;
     }
-    
-    
+
 }

@@ -6,7 +6,7 @@
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/dbBolao</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">static</property>
+        <property name="hibernate.connection.password">root</property>
         <!-- Para reutilizar a session... -->
         <property name="hibernate.current_session_context_class">thread</property>
         <!-- atividade com a base de dados ao carregar... -->
@@ -18,10 +18,13 @@
         <property name="use_sql_comments">true</property>
         -->
         <!-- Mapeamento das classes -->
-        <mapping class="model.Grupo"/>
-        <mapping class="model.Time"/>
+        <mapping class="model.Aposta"/>
         <mapping class="model.Apostador"/>
         <mapping class="model.Competicao"/>
+        <mapping class="model.Grupo"/>
         <mapping class="model.Rodada"/>
+        <mapping class="model.Jogo"/>
+        <mapping class="model.Time"/>
+        <mapping class="model.TimeCompeticao"/>
     </session-factory>
 </hibernate-configuration>
