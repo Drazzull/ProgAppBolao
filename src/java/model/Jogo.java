@@ -34,15 +34,13 @@ public class Jogo implements Serializable{
     private Integer codigo;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cod_time")
-    @Column(name = "cod_time1")
+    @JoinColumn(name = "cod_time1", referencedColumnName = "cod_time")
     private Time time1;
     @Column(name = "placar_time1", nullable = false)
     private Integer placarTime1;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cod_time")
-    @Column(name = "cod_time2")
+    @JoinColumn(name = "cod_time2", referencedColumnName = "cod_time")
     private Time time2;
     @Column(name = "placar_time2", nullable = false)
     private Integer placarTime2;
@@ -52,8 +50,7 @@ public class Jogo implements Serializable{
     private Date dataJogo;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cod_time")
-    @Column(name = "vencedor")
+    @JoinColumn(name = "vencedor", referencedColumnName = "cod_time")
     private Time vencedor;
     
     @ManyToOne(fetch = FetchType.LAZY)
