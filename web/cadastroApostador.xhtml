@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Gerenciamento de Bolão</title>
+        <link href="css/Estilo.css" rel="stylesheet" type="text/css" media="all"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+        <c:set var="nav" value="C" scope="session"/>
+        <ui:include src="cabecalho.xhtml"></ui:include>
+        <div id="container">
+            <h:form enctype="multipart/form-data">
+                <fieldset>
+                    <legend>Dados do Apostador</legend>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Nome" for="txtNome" />
+                        <h:inputText id="txtNome" styleClass="form-control" maxlength="100" value="#{apostadorBean.apostador.nome}"/>
+                        <h:outputLabel value="Apelido" for="txtApelido" />
+                        <h:inputText id="txtApelido" styleClass="form-control" maxlength="100" value="#{apostadorBean.apostador.apelido}"/>
+                        <h:outputLabel value="CPF" for="txtCPF" />
+                        <h:inputText id="txtCpf" styleClass="form-control" maxlength="100" value="#{apostadorBean.apostador.cpf}"/>
+                        <h:outputLabel value="Data de Nascimento" for="txtDataNascimento" />
+                        <h:inputText id="txtDataNascimento" styleClass="form-control" size="20" value="#{apostadorBean.apostador.dataNascimento}"
+                                     required="true">
+                            <f:convertDateTime type="date" pattern="dd/MM/yyyy" dateStyle="medium" locale="pt_BR" timeZone="GMT-3"/>
+                        </h:inputText>
+                        <h:outputLabel value="E-mail" for="txtEmail" />
+                        <h:inputText id="txtEmail" styleClass="form-control" maxlength="100" value="#{apostadorBean.apostador.email}"/>
+                        <label>&nbsp; </label>
+                        <h:commandButton id="btnInserir" styleClass="btn btn-default" value="Salvar" action="#{apostadorBean.salvar}"/>
+                    </h:panelGrid>
+                </fieldset>
+            </h:form>
+        </div>
+
+        <script src="js/jquery.min.js"/>
+        <script src="js/funcoes.js"/>
+        <script src="js/bootstrap.min.js"/>
+    </h:body>
+</html>

@@ -5,6 +5,10 @@
  */
 package model;
 
+/**
+ *
+ * @author José Luiz
+ */
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -15,15 +19,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
-/**
- *
- * @author José Luiz
- */
 @Entity
 @Table(name = "jogo")
 public class Jogo implements Serializable
@@ -59,6 +59,9 @@ public class Jogo implements Serializable
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cod_rodada")
     private Rodada rodada;
+
+    @Transient
+    private boolean editando;
 
     public Jogo()
     {
@@ -142,6 +145,16 @@ public class Jogo implements Serializable
     public void setRodada(Rodada rodada)
     {
         this.rodada = rodada;
+    }
+
+    public boolean isEditando()
+    {
+        return editando;
+    }
+
+    public void setEditando(boolean editando)
+    {
+        this.editando = editando;
     }
 
     @Override

@@ -5,6 +5,10 @@
  */
 package dao;
 
+/**
+ *
+ * @author Drazzull
+ */
 import conexao.Hibernate4Util;
 import java.util.Date;
 import java.util.List;
@@ -14,10 +18,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-/**
- *
- * @author Drazzull
- */
 public class TimeDao
 {
 
@@ -69,7 +69,7 @@ public class TimeDao
         }
         catch (HibernateException e)
         {
-            System.out.println("Não foi possível selecionar contatos. Erro: " + e.getMessage());
+            System.out.println("Não foi possível selecionar times. Erro: " + e.getMessage());
             throw new HibernateException(e);
         }
     }
@@ -95,7 +95,7 @@ public class TimeDao
         }
         catch (HibernateException e)
         {
-            System.out.println("Não foi possível selecionar contatos. Erro: " + e.getMessage());
+            System.out.println("Não foi possível selecionar times. Erro: " + e.getMessage());
             throw new HibernateException(e);
         }
     }
@@ -123,7 +123,7 @@ public class TimeDao
         }
         catch (HibernateException e)
         {
-            System.out.println("Não foi possível selecionar contatos. Erro: " + e.getMessage());
+            System.out.println("Não foi possível selecionar times. Erro: " + e.getMessage());
             throw new HibernateException(e);
         }
     }
@@ -148,7 +148,7 @@ public class TimeDao
         }
         catch (HibernateException e)
         {
-            System.out.println("Não foi possível buscar contato. Erro: " + e.getMessage());
+            System.out.println("Não foi possível buscar o time. Erro: " + e.getMessage());
         }
 
         return null;

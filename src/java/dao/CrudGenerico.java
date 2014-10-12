@@ -5,15 +5,15 @@
  */
 package dao;
 
+/**
+ *
+ * @author Drazzull
+ */
 import conexao.Hibernate4Util;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-/**
- *
- * @author Drazzull
- */
 public class CrudGenerico
 {
 

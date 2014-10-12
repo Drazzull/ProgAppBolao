@@ -5,6 +5,10 @@
  */
 package model;
 
+/**
+ *
+ * @author Drazzull
+ */
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -17,13 +21,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-/**
- *
- * @author Drazzull
- */
 @Entity
 @Table(name = "time")
-public class Time implements Serializable{
+public class Time implements Serializable
+{
 
     @Id
     @GeneratedValue
@@ -54,7 +55,7 @@ public class Time implements Serializable{
 
     public Time()
     {
-            this.dataCadastro = new Date(System.currentTimeMillis());
+        this.dataCadastro = new Date(System.currentTimeMillis());
     }
 
     /**
@@ -103,7 +104,7 @@ public class Time implements Serializable{
      * @return Data de cadastro do time
      */
     public Date getDataCadastro()
-    {        
+    {
         return this.dataCadastro;
     }
 
