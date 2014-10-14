@@ -19,8 +19,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
-import static org.hibernate.envers.query.AuditEntity.revisionNumber;
-import org.hibernate.envers.query.AuditQuery;
 
 public class ApostadorDao
 {
@@ -86,17 +84,19 @@ public class ApostadorDao
             Transaction transacao = sessao.beginTransaction();
             AuditReader reader = AuditReaderFactory.get(sessao);
             List<Object[]> resultList = reader.createQuery().forRevisionsOfEntity(Apostador.class, false, true).getResultList();
-            transacao.commit();
             List<Apostador> listaAuditada = new ArrayList<>();
             int contador = 0;
             for (Object[] objTmp : resultList)
             {
                 Apostador apostadorTmp = (Apostador) objTmp[0];
                 apostadorTmp.setRevType(objTmp[2].toString());
+                apostadorTmp.getGrupo().getCodigo();
+                apostadorTmp.getTimeDePreferencia().getCodigo();
                 listaAuditada.add(contador, apostadorTmp);
                 contador++;
             }
-            
+
+            transacao.commit();
             return listaAuditada;
         }
         catch (HibernateException e)
