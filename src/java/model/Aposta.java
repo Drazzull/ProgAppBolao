@@ -34,7 +34,7 @@ public class Aposta implements Serializable
     @Column(name = "cod_aposta", nullable = false)
     private Integer codigo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cod_apostador")
     private Apostador apostador;
 
@@ -42,7 +42,7 @@ public class Aposta implements Serializable
     @Column(name = "dt_aposta", nullable = false)
     private Date dataAposta;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cod_jogo")
     private Jogo jogo;
 

@@ -33,11 +33,12 @@ public class Rodada implements Serializable
     @GeneratedValue
     @Column(name = "cod_rodada", nullable = false)
     private Integer codigo;
+
     @Temporal(TemporalType.DATE)
     @Column(name = "dt_fim_apostas", nullable = false)
     private Date dataFimApostas;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cod_competicao")
     private Competicao competicao;
 

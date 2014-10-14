@@ -3,22 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import dao.ApostadorDao;
+import dao.GrupoDao;
+import dao.TimeDao;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import model.Apostador;
+import model.Grupo;
+import model.Time;
 
 /**
  *
  * @author Drazzull
  */
+@ManagedBean
+@SessionScoped
 public class ApostadorBean
 {
-   
+
     ApostadorDao apostadorDao = new ApostadorDao();
     private Apostador apostador = new Apostador();
+    private final GrupoDao grupoDao = new GrupoDao();
+    private final TimeDao timeDao = new TimeDao();
 
     public Apostador getApostador()
     {
@@ -28,6 +37,11 @@ public class ApostadorBean
     public List<Apostador> getApostadores()
     {
         return this.apostadorDao.listar();
+    }
+    
+    public List<Apostador> getAuditoria() throws Exception
+    {
+        return this.apostadorDao.listarAuditoria();
     }
 
     public String salvar()
@@ -56,5 +70,15 @@ public class ApostadorBean
         this.apostadorDao.excluir(apostador);
         this.apostador = new Apostador();
         return "listarApostadores";
-    } 
+    }
+
+    public List<Grupo> getGrupos()
+    {
+        return this.grupoDao.listar();
+    }
+
+    public List<Time> getTimes()
+    {
+        return this.timeDao.listar();
+    }
 }

@@ -25,8 +25,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
+import org.hibernate.envers.Audited;
 
 @Entity
+@Audited
 @Table(name = "apostador", uniqueConstraints =
 {
     @UniqueConstraint(columnNames = "cpf"),
@@ -56,16 +58,22 @@ public class Apostador implements Serializable
     @Column(name = "apelido", length = 100)
     private String apelido;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cod_time")
     private Time timeDePreferencia;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cod_grupo")
     private Grupo grupo;
 
     @Transient
     private boolean editando;
+
+    @Transient
+    private Integer rev;
+
+    @Transient
+    private String revType;
 
     public Apostador()
     {
@@ -159,6 +167,26 @@ public class Apostador implements Serializable
     public void setEditando(boolean editando)
     {
         this.editando = editando;
+    }
+
+    public Integer getRev()
+    {
+        return rev;
+    }
+
+    public void setRev(Integer rev)
+    {
+        this.rev = rev;
+    }
+
+    public String getRevType()
+    {
+        return revType;
+    }
+
+    public void setRevType(String revType)
+    {
+        this.revType = revType;
     }
 
     @Override

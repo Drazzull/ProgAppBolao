@@ -20,8 +20,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import org.hibernate.envers.Audited;
 
 @Entity
+@Audited
 @Table(name = "time")
 public class Time implements Serializable
 {
@@ -30,26 +32,36 @@ public class Time implements Serializable
     @GeneratedValue
     @Column(name = "cod_time", nullable = false)
     private Integer codigo;
+    
     @Column(name = "nome", length = 100, nullable = false)
     private String nome;
+    
     @Temporal(TemporalType.DATE)
     @Column(name = "dt_cadastro", nullable = false)
     private Date dataCadastro;
+    
     @Temporal(TemporalType.DATE)
     @Column(name = "dt_fundacao", nullable = false)
     private Date dataFundacao;
+    
     @Column(name = "cidade", nullable = false)
     private String cidade;
+    
     @Column(name = "site", nullable = true)
     private String site;
+    
     @Column(name = "email", nullable = false)
     private String email;
+    
     @Column(name = "fone", nullable = false)
     private String fone;
+    
     @Column(name = "endereco", nullable = true)
     private String endereco;
+    
     @Column(name = "descricao", nullable = false)
     private String descricao;
+    
     @Transient
     private boolean editando;
 

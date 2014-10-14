@@ -36,6 +36,24 @@ and open the template in the editor.
                                      required="true">
                             <f:convertDateTime type="date" pattern="dd/MM/yyyy" dateStyle="medium" locale="pt_BR" timeZone="GMT-3"/>
                         </h:inputText>
+                        
+                        <h:outputLabel for="cmbGrupos" value="Grupo" />
+                        <h:selectOneMenu styleClass="form-control" id="cmbGrupo"
+                                         value="#{apostadorBean.apostador.grupo}"
+                                         converter="grupoConverter">
+                            <f:selectItem itemLabel="Selecione o grupo..." />
+                            <f:selectItems value="#{apostadorBean.grupos}"
+                                           var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
+                        </h:selectOneMenu>
+
+                        <h:outputLabel for="cmbTimes" value="Time de Preferência" />
+                        <h:selectOneMenu styleClass="form-control" id="cmbTimes"
+                                         value="#{apostadorBean.apostador.timeDePreferencia}"
+                                         converter="timeConverter">
+                            <f:selectItem itemLabel="Selecione o time de preferência..." />
+                            <f:selectItems value="#{apostadorBean.times}"
+                                           var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
+                        </h:selectOneMenu>
                         <h:outputLabel value="E-mail" for="txtEmail" />
                         <h:inputText id="txtEmail" styleClass="form-control" maxlength="100" value="#{apostadorBean.apostador.email}"/>
                         <label>&nbsp; </label>

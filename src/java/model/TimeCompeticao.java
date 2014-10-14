@@ -31,11 +31,11 @@ public class TimeCompeticao implements Serializable
     @Column(name = "cod_time_competicao", nullable = false)
     private Integer codigo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cod_time")
     private Time time;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cod_competicao")
     private Competicao competicao;
 

@@ -24,12 +24,24 @@ and open the template in the editor.
                 <fieldset>
                     <legend>Listagem de Apostadores</legend>
 
-                    <h:dataTable id="itens" value="#{apostadorBean.apostadores}" var="item" border="1" width="100%">
+                    <h:dataTable id="itens" value="#{apostadorBean.auditoria}" var="item" border="1" width="100%">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Código" />
                             </f:facet>
                             <h:outputText value="#{item.codigo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Revisão" />
+                            </f:facet>
+                            <h:outputText value="#{item.rev}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Tipo da Revisão" />
+                            </f:facet>
+                            <h:outputText value="#{item.revType}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
@@ -74,18 +86,6 @@ and open the template in the editor.
                                 <h:outputText value="Time de Preferência" />
                             </f:facet>
                             <h:outputText value="#{item.timeDePreferencia.nome}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Editar" />
-                            </f:facet>
-                            <h:commandButton id="btnEditar" styleClass="btn btn-default" value="Editar" action="#{apostadorBean.editarItem(item)}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Excluir" />
-                            </f:facet>
-                            <h:commandButton id="btnExcluir" styleClass="btn btn-default" value="Excluir" action="#{apostadorBean.excluirItem(item)}"/>
                         </h:column>
                     </h:dataTable>
                 </fieldset>
