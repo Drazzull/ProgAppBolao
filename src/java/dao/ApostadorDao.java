@@ -90,8 +90,14 @@ public class ApostadorDao
             {
                 Apostador apostadorTmp = (Apostador) objTmp[0];
                 apostadorTmp.setRevType(objTmp[2].toString());
-                apostadorTmp.getGrupo().getCodigo();
-                apostadorTmp.getTimeDePreferencia().getCodigo();
+                if (apostadorTmp.getGrupo() != null)
+                {
+                    apostadorTmp.getGrupo().getCodigo();
+                }
+                if (apostadorTmp.getTimeDePreferencia() != null)   
+                {
+                    apostadorTmp.getTimeDePreferencia().getCodigo();
+                }
                 listaAuditada.add(contador, apostadorTmp);
                 contador++;
             }

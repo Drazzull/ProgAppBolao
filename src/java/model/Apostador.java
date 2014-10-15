@@ -25,7 +25,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.envers.Audited;
 
 @Entity
