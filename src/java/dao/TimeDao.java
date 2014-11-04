@@ -13,10 +13,12 @@ import conexao.Hibernate4Util;
 import java.util.Date;
 import java.util.List;
 import model.Time;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 public class TimeDao
 {
@@ -61,10 +63,8 @@ public class TimeDao
         try
         {
             Session sessao = Hibernate4Util.getSessionFactory();
-            Transaction transacao = sessao.beginTransaction();
-            Query consulta = sessao.createQuery("from Time");
-            List<Time> resultado = consulta.list();
-            transacao.commit();
+            Criteria cr = sessao.createCriteria(Time.class);
+            List<Time> resultado = cr.list();
             return resultado;
         }
         catch (HibernateException e)
@@ -139,11 +139,9 @@ public class TimeDao
         try
         {
             Session sessao = Hibernate4Util.getSessionFactory();
-            Transaction transacao = sessao.beginTransaction();
-            Query consulta = sessao.createQuery("from Time where codigo = :parametro");
-            consulta.setInteger("parametro", valor);
-            Time time = (Time) consulta.uniqueResult();
-            transacao.commit();
+            Criteria cr = sessao.createCriteria(Time.class);
+            cr.add(Restrictions.eq("codigo",valor));
+            Time time = (Time) cr.uniqueResult();
             return time;
         }
         catch (HibernateException e)

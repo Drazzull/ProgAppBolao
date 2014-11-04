@@ -13,10 +13,12 @@ import conexao.Hibernate4Util;
 import java.util.ArrayList;
 import java.util.List;
 import model.Apostador;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
 
@@ -63,10 +65,8 @@ public class ApostadorDao
         try
         {
             Session sessao = Hibernate4Util.getSessionFactory();
-            Transaction transacao = sessao.beginTransaction();
-            Query consulta = sessao.createQuery("from Apostador");
-            List<Apostador> resultado = consulta.list();
-            transacao.commit();
+            Criteria cr = sessao.createCriteria(Apostador.class);
+            List<Apostador> resultado = cr.list();
             return resultado;
         }
         catch (HibernateException e)
@@ -122,11 +122,9 @@ public class ApostadorDao
         try
         {
             Session sessao = Hibernate4Util.getSessionFactory();
-            Transaction transacao = sessao.beginTransaction();
-            Query consulta = sessao.createQuery("from Apostador where codigo = :parametro");
-            consulta.setInteger("parametro", valor);
-            Apostador apostador = (Apostador) consulta.uniqueResult();
-            transacao.commit();
+            Criteria cr = sessao.createCriteria(Apostador.class);
+            cr.add(Restrictions.eq("codigo", valor));
+            Apostador apostador = (Apostador) cr.uniqueResult();
             return apostador;
         }
         catch (HibernateException e)

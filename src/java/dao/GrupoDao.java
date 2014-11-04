@@ -12,10 +12,12 @@ package dao;
 import conexao.Hibernate4Util;
 import java.util.List;
 import model.Grupo;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 public class GrupoDao
 {
@@ -60,10 +62,8 @@ public class GrupoDao
         try
         {
             Session sessao = Hibernate4Util.getSessionFactory();
-            Transaction transacao = sessao.beginTransaction();
-            Query consulta = sessao.createQuery("from Grupo");
-            List<Grupo> resultado = consulta.list();
-            transacao.commit();
+            Criteria cr = sessao.createCriteria(Grupo.class);
+            List<Grupo> resultado = cr.list();
             return resultado;
         }
         catch (HibernateException e)
@@ -84,11 +84,9 @@ public class GrupoDao
         try
         {
             Session sessao = Hibernate4Util.getSessionFactory();
-            Transaction transacao = sessao.beginTransaction();
-            Query consulta = sessao.createQuery("from Grupo where codigo = :parametro");
-            consulta.setInteger("parametro", valor);
-            Grupo grupo = (Grupo) consulta.uniqueResult();
-            transacao.commit();
+            Criteria cr = sessao.createCriteria(Grupo.class);
+            cr.add(Restrictions.eq("codigo", valor));
+            Grupo grupo = (Grupo) cr.uniqueResult();
             return grupo;
         }
         catch (HibernateException e)

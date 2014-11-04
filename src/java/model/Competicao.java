@@ -20,8 +20,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import org.hibernate.envers.Audited;
 
 @Entity
+@Audited
 @Table(name = "competicao")
 public class Competicao implements Serializable
 {
