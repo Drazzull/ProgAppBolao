@@ -16,6 +16,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,39 +26,48 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import org.hibernate.envers.Audited;
 
+
 @Entity
-@Audited
 @Table(name = "jogo")
 public class Jogo implements Serializable
 {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_jogo", nullable = false)
     private Integer codigo;
 
+    @Audited
+    // Conferir Mapeamento
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cod_time1", referencedColumnName = "cod_time")
-    private Time time1;
+    @JoinColumn(name = "cod_time1",referencedColumnName = "cod_time_competicao")
+    private TimeCompeticao time1;
 
+    @Audited
     @Column(name = "placar_time1", nullable = false)
     private Integer placarTime1;
 
+    @Audited
+    // Conferir Mapeamento
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cod_time2", referencedColumnName = "cod_time")
-    private Time time2;
+    @JoinColumn(name = "cod_time2", referencedColumnName = "cod_time_competicao")
+    private TimeCompeticao time2;
 
+    @Audited
     @Column(name = "placar_time2", nullable = false)
     private Integer placarTime2;
 
+    @Audited
     @Temporal(TemporalType.DATE)
     @Column(name = "dt_jogo")
     private Date dataJogo;
 
+    @Audited
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "vencedor", referencedColumnName = "cod_time")
     private Time vencedor;
 
+    @Audited
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cod_rodada")
     private Rodada rodada;
@@ -79,13 +89,11 @@ public class Jogo implements Serializable
         this.codigo = codigo;
     }
 
-    public Time getTime1()
-    {
+    public TimeCompeticao getTime1() {
         return time1;
     }
 
-    public void setTime1(Time time1)
-    {
+    public void setTime1(TimeCompeticao time1) {
         this.time1 = time1;
     }
 
@@ -99,13 +107,11 @@ public class Jogo implements Serializable
         this.placarTime1 = placarTime1;
     }
 
-    public Time getTime2()
-    {
+    public TimeCompeticao getTime2() {
         return time2;
     }
 
-    public void setTime2(Time time2)
-    {
+    public void setTime2(TimeCompeticao time2) {
         this.time2 = time2;
     }
 

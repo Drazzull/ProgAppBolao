@@ -11,11 +11,15 @@ package model;
  */
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,7 +33,7 @@ public class Time implements Serializable
 {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_time", nullable = false)
     private Integer codigo;
     
@@ -269,7 +273,7 @@ public class Time implements Serializable
     {
         this.descricao = descricao;
     }
-
+    
     /**
      * Verifica se o objeto está sendo editado
      *

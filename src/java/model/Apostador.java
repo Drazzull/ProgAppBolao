@@ -28,7 +28,6 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.envers.Audited;
 
 @Entity
-@Audited
 @Table(name = "apostador", uniqueConstraints =
 {
     @UniqueConstraint(columnNames = "cpf"),
@@ -39,29 +38,36 @@ public class Apostador implements Serializable
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "cod_apostador", nullable = false)
+    @Column(name = "cod_apostador")
     private Integer codigo;
 
+    @Audited
     @Column(name = "nome", length = 100, nullable = false)
     private String nome;
 
+    @Audited
     @Column(name = "cpf", length = 14, nullable = false)
     private String cpf;
 
+    @Audited
     @Temporal(TemporalType.DATE)
     @Column(name = "dt_nasc", nullable = false)
     private Date dataNascimento;
 
+    @Audited
     @Column(name = "email", length = 100)
     private String email;
 
+    @Audited
     @Column(name = "apelido", length = 100)
     private String apelido;
 
+    @Audited
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cod_time")
     private Time timeDePreferencia;
 
+    @Audited
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cod_grupo")
     private Grupo grupo;

@@ -10,31 +10,35 @@ package model;
  * @author José Luiz
  */
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import org.hibernate.envers.Audited;
 
 @Entity
 @Table(name = "time_competicao")
-public class TimeCompeticao implements Serializable
-{
-
+public class TimeCompeticao implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_time_competicao", nullable = false)
     private Integer codigo;
 
+    @Audited
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cod_time")
     private Time time;
-
+    
+    @Audited
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cod_competicao")
     private Competicao competicao;
@@ -56,24 +60,20 @@ public class TimeCompeticao implements Serializable
         this.codigo = codigo;
     }
 
-    public Time getTime()
-    {
-        return time;
-    }
-
-    public void setTime(Time time)
-    {
-        this.time = time;
-    }
-
-    public Competicao getCompeticao()
-    {
+    public Competicao getCompeticao() {
         return competicao;
     }
 
-    public void setCompeticao(Competicao competicao)
-    {
+    public void setCompeticao(Competicao competicao) {
         this.competicao = competicao;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
     }
 
     public boolean isEditando()

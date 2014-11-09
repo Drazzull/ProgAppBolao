@@ -16,6 +16,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -26,34 +27,39 @@ import javax.persistence.Transient;
 import org.hibernate.envers.Audited;
 
 @Entity
-@Audited
 @Table(name = "aposta")
 public class Aposta implements Serializable
 {
 
     @Id
-    @GeneratedValue
-    @Column(name = "cod_aposta", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cod_aposta")
     private Integer codigo;
 
+    @Audited
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cod_apostador")
     private Apostador apostador;
 
+    @Audited
     @Temporal(TemporalType.DATE)
     @Column(name = "dt_aposta", nullable = false)
     private Date dataAposta;
 
+    @Audited
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cod_jogo")
     private Jogo jogo;
 
+    @Audited
     @Column(name = "placar_time1", nullable = false)
     private Integer placarTime1;
 
+    @Audited
     @Column(name = "placar_time2", nullable = false)
     private Integer placarTime2;
 
+    @Audited
     @Column(name = "vencedor", length = 10, nullable = false)
     private String vencedor;
 

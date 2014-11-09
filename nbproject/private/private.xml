@@ -3,7 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Users/Arthur/Documents/NetBeansProjects/ProgAppBolao/src/java/dao/ApostadorDao.java</file>
+            <file>file:/C:/GitHub/ProgAppBolao/src/java/dao/CrudGenerico.java</file>
+            <file>file:/C:/GitHub/ProgAppBolao/src/java/conexao/Hibernate4Util.java</file>
         </group>
     </open-files>
 </project-private>

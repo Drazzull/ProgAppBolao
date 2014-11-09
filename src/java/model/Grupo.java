@@ -14,6 +14,7 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -22,12 +23,11 @@ import org.hibernate.envers.Audited;
 @Entity
 @Audited
 @Table(name = "grupo")
-public class Grupo implements Serializable
-{
+public class Grupo implements Serializable {
 
     @Id
-    @GeneratedValue
-    @Column(name = "cod_grupo", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cod_grupo")
     private Integer codigo;
 
     @Column(name = "nome", length = 100, nullable = false)

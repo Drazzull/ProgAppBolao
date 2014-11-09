@@ -11,11 +11,15 @@ package model;
  */
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,12 +29,11 @@ import org.hibernate.envers.Audited;
 @Entity
 @Audited
 @Table(name = "competicao")
-public class Competicao implements Serializable
-{
+public class Competicao implements Serializable{
 
     @Id
-    @GeneratedValue
-    @Column(name = "cod_copeticao", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cod_competicao")
     private Integer codigo;
 
     @Column(name = "nome", length = 100, nullable = false)
@@ -43,7 +46,7 @@ public class Competicao implements Serializable
     @Temporal(TemporalType.DATE)
     @Column(name = "dt_fim", nullable = false)
     private Date dataFim;
-
+    
     @Transient
     private boolean editando;
 
@@ -90,7 +93,7 @@ public class Competicao implements Serializable
     {
         this.dataFim = dataFim;
     }
-
+        
     public boolean isEditando()
     {
         return editando;
