@@ -11,6 +11,7 @@ import model.TimeCompeticao;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -39,8 +40,10 @@ public class TimeCompeticaoDao {
         try
         {
             Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
             Criteria cr = sessao.createCriteria(TimeCompeticao.class);
             List<TimeCompeticao> resultado = cr.list();
+            transacao.commit();
             return resultado;
         }
         catch (HibernateException e)
@@ -55,9 +58,11 @@ public class TimeCompeticaoDao {
         try
         {
             Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
             Criteria cr = sessao.createCriteria(TimeCompeticao.class);
             cr.add(Restrictions.eq("codigo", valor));
             TimeCompeticao tc = (TimeCompeticao) cr.uniqueResult();
+            transacao.commit();
             return tc;
         }
         catch (HibernateException e)

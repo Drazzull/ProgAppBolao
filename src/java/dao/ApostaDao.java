@@ -12,6 +12,7 @@ import model.Rodada;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -40,8 +41,10 @@ public class ApostaDao {
         try
         {
             Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
             Criteria cr = sessao.createCriteria(Aposta.class);
             List<Aposta> resultado = cr.list();
+            transacao.commit();
             return resultado;
         }
         catch (HibernateException e)
@@ -56,9 +59,11 @@ public class ApostaDao {
         try
         {
             Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
             Criteria cr = sessao.createCriteria(Rodada.class);
             cr.add(Restrictions.eq("codigo", valor));
             Aposta aposta = (Aposta) cr.uniqueResult();
+            transacao.commit();
             return aposta;
         }
         catch (HibernateException e)

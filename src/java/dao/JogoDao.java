@@ -11,6 +11,7 @@ import model.Jogo;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -39,8 +40,10 @@ public class JogoDao {
         try
         {
             Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
             Criteria cr = sessao.createCriteria(Jogo.class);
             List<Jogo> resultado = cr.list();
+            transacao.commit();
             return resultado;
         }
         catch (HibernateException e)
@@ -55,9 +58,11 @@ public class JogoDao {
         try
         {
             Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
             Criteria cr = sessao.createCriteria(Jogo.class);
             cr.add(Restrictions.eq("codigo", valor));
             Jogo jogo = (Jogo) cr.uniqueResult();
+            transacao.commit();
             return jogo;
         }
         catch (HibernateException e)

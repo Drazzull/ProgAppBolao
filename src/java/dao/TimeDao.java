@@ -63,8 +63,10 @@ public class TimeDao
         try
         {
             Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
             Criteria cr = sessao.createCriteria(Time.class);
             List<Time> resultado = cr.list();
+            transacao.commit();
             return resultado;
         }
         catch (HibernateException e)
@@ -139,9 +141,11 @@ public class TimeDao
         try
         {
             Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
             Criteria cr = sessao.createCriteria(Time.class);
             cr.add(Restrictions.eq("codigo",valor));
             Time time = (Time) cr.uniqueResult();
+            transacao.commit();
             return time;
         }
         catch (HibernateException e)
