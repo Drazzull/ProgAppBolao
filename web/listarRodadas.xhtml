@@ -4,29 +4,25 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Gerenciamento de Bolão</title>
-        <link href="css/Estilo.css" rel="stylesheet" type="text/css" media="all"/>
+        <link rel="stylesheet" type="text/css" href="css/Estilo.css" media="all"/>
         <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-select.css"/>
     </h:head>
     <h:body>
-        <c:set var="nav" value="C" scope="session"/>
-        <ui:include src="cabecalho.xhtml"></ui:include>
+        <c:set var="nav" value="L" scope="session"/>
+        <ui:include src="cabecalho.xhtml"/>
         <div id="container">
-            <h:form enctype="multipart/form-data">
+            <h:form id="frmPrincipal" styleClass="form-horizontal">
                 <fieldset>
-                    <legend>Dados da Competição</legend>
-                    <h:panelGrid columns="2">
-                        
-                    </h:panelGrid>
+                    <legend>Listagem de Rodadas</legend>
                 </fieldset>
             </h:form>
         </div>

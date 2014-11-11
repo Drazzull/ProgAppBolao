@@ -23,9 +23,13 @@ and open the template in the editor.
         <div id="container">
             <h:form enctype="multipart/form-data">
                 <fieldset>
-                    <legend>Dados da Competição</legend>
+                    <legend>Dados da Rodada</legend>
                     <h:panelGrid columns="2">
-                        
+                        <h:outputLabel value="Data de Término" for="txtDataFimApostas" />
+                        <h:inputText id="txtDataFundacao" styleClass="form-control" size="20" value="#{rodadaBean.rodada.dataFimApostas}"
+                                     required="true">
+                            <f:convertDateTime type="date" pattern="dd/MM/yyyy" dateStyle="medium" locale="pt_BR" timeZone="GMT-3"/>
+                        </h:inputText>
                     </h:panelGrid>
                 </fieldset>
             </h:form>
