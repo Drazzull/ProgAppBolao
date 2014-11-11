@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Gerenciamento de Bolão</title>
+        <link rel="stylesheet" type="text/css" href="css/Estilo.css" media="all"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-select.css"/>
+    </h:head>
+    <h:body>
+        <c:set var="nav" value="L" scope="session"/>
+        <ui:include src="cabecalho.xhtml"/>
+        <div id="container">
+            <h:form id="frmPrincipal" styleClass="form-horizontal">
+                <fieldset>
+                    <legend>Listagem de Jogos</legend>
+                </fieldset>
+            </h:form>
+        </div>
+
+        <script src="js/jquery.min.js"/>
+        <script src="js/funcoes.js"/>
+        <script src="js/bootstrap.min.js"/>
+    </h:body>
+</html>
