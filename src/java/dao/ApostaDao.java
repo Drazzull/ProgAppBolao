@@ -6,6 +6,7 @@
 package dao;
 
 import conexao.Hibernate4Util;
+import java.util.ArrayList;
 import java.util.List;
 import model.Aposta;
 import model.Rodada;
@@ -14,6 +15,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.envers.AuditReader;
+import org.hibernate.envers.AuditReaderFactory;
 
 /**
  *
@@ -51,6 +54,41 @@ public class ApostaDao {
         {
             System.out.println("Não foi possível selecionar apostadores. Erro: " + e.getMessage());
             throw new HibernateException(e);
+        }
+    }
+    
+        public List<Aposta> listarAuditoria() throws Exception
+    {
+        try
+        {
+            Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
+            AuditReader reader = AuditReaderFactory.get(sessao);
+            List<Object[]> resultList = reader.createQuery().forRevisionsOfEntity(Aposta.class, false, true).getResultList();
+            List<Aposta> listaAuditada = new ArrayList<>();
+            int contador = 0;
+            for (Object[] objTmp : resultList)
+            {
+                Aposta apostaTmp = (Aposta) objTmp[0];
+                apostaTmp.setRevType(objTmp[2].toString());
+                if (apostaTmp.getApostador()!= null)
+                {
+                    apostaTmp.getApostador().getCodigo();
+                }
+                if (apostaTmp.getJogo() != null)   
+                {
+                    apostaTmp.getJogo().getCodigo();
+                }
+                listaAuditada.add(contador, apostaTmp);
+                contador++;
+            }
+
+            transacao.commit();
+            return listaAuditada;
+        }
+        catch (HibernateException e)
+        {
+            throw new Exception("Não foi possível buscar a auditoria. Erro: " + e.getMessage());
         }
     }
     

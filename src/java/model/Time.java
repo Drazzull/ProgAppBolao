@@ -68,6 +68,12 @@ public class Time implements Serializable
     
     @Transient
     private boolean editando;
+    
+    @Transient
+    private Integer rev;
+
+    @Transient
+    private String revType;
 
     public Time()
     {
@@ -294,6 +300,22 @@ public class Time implements Serializable
         this.editando = editando;
     }
 
+    public Integer getRev() {
+        return rev;
+    }
+
+    public void setRev(Integer rev) {
+        this.rev = rev;
+    }
+
+    public String getRevType() {
+        return revType;
+    }
+
+    public void setRevType(String revType) {
+        this.revType = revType;
+    }
+    
     @Override
     public int hashCode()
     {

@@ -10,6 +10,7 @@ package dao;
  * @author Drazzull
  */
 import conexao.Hibernate4Util;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import model.Time;
@@ -19,6 +20,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.envers.AuditReader;
+import org.hibernate.envers.AuditReaderFactory;
 
 public class TimeDao
 {
@@ -129,8 +132,35 @@ public class TimeDao
             throw new HibernateException(e);
         }
     }
+    
+    public List<Time> listarAuditoria() throws Exception
+    {
+        try
+        {
+            Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
+            AuditReader reader = AuditReaderFactory.get(sessao);
+            List<Object[]> resultList = reader.createQuery().forRevisionsOfEntity(Time.class, false, true).getResultList();
+            List<Time> listaAuditada = new ArrayList<>();
+            int contador = 0;
+            for (Object[] objTmp : resultList)
+            {
+                Time timeTmp = (Time) objTmp[0];
+                timeTmp.setRevType(objTmp[2].toString());
+                listaAuditada.add(contador, timeTmp);
+                contador++;
+            }
 
-    /**
+            transacao.commit();
+            return listaAuditada;
+        }
+        catch (HibernateException e)
+        {
+            throw new Exception("Não foi possível buscar a auditoria. Erro: " + e.getMessage());
+        }
+    }
+    
+       /**
      * Busca o código de um time
      *
      * @param valor Código a ser pesquisado

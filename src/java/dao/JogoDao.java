@@ -6,6 +6,7 @@
 package dao;
 
 import conexao.Hibernate4Util;
+import java.util.ArrayList;
 import java.util.List;
 import model.Jogo;
 import org.hibernate.Criteria;
@@ -13,6 +14,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.envers.AuditReader;
+import org.hibernate.envers.AuditReaderFactory;
 
 /**
  *
@@ -52,6 +55,45 @@ public class JogoDao {
             throw new HibernateException(e);
         }
     }
+
+    public List<Jogo> listarAuditoria() throws Exception
+    {
+        try
+        {
+            Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
+            AuditReader reader = AuditReaderFactory.get(sessao);
+            List<Object[]> resultList = reader.createQuery().forRevisionsOfEntity(Jogo.class, false, true).getResultList();
+            List<Jogo> listaAuditada = new ArrayList<>();
+            int contador = 0;
+            for (Object[] objTmp : resultList)
+            {
+                Jogo jogoTmp = (Jogo) objTmp[0];
+                jogoTmp.setRevType(objTmp[2].toString());
+                if (jogoTmp.getTime1() != null)
+                {
+                    jogoTmp.getTime1().getCodigo();
+                }
+                if (jogoTmp.getTime2() != null)   
+                {
+                    jogoTmp.getTime2().getCodigo();
+                }
+                if (jogoTmp.getVencedor() != null)   
+                {
+                    jogoTmp.getVencedor().getCodigo();
+                }
+                listaAuditada.add(contador, jogoTmp);
+                contador++;
+            }
+
+            transacao.commit();
+            return listaAuditada;
+        }
+        catch (HibernateException e)
+        {
+            throw new Exception("Não foi possível buscar a auditoria. Erro: " + e.getMessage());
+        }
+    } 
     
     public Jogo buscar(int valor)
     {

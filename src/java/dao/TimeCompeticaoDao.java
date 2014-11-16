@@ -6,6 +6,7 @@
 package dao;
 
 import conexao.Hibernate4Util;
+import java.util.ArrayList;
 import java.util.List;
 import model.TimeCompeticao;
 import org.hibernate.Criteria;
@@ -13,6 +14,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.envers.AuditReader;
+import org.hibernate.envers.AuditReaderFactory;
 
 /**
  *
@@ -50,6 +53,41 @@ public class TimeCompeticaoDao {
         {
             System.out.println("Não foi possível selecionar apostadores. Erro: " + e.getMessage());
             throw new HibernateException(e);
+        }
+    }
+
+    public List<TimeCompeticao> listarAuditoria() throws Exception
+    {
+        try
+        {
+            Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
+            AuditReader reader = AuditReaderFactory.get(sessao);
+            List<Object[]> resultList = reader.createQuery().forRevisionsOfEntity(TimeCompeticao.class, false, true).getResultList();
+            List<TimeCompeticao> listaAuditada = new ArrayList<>();
+            int contador = 0;
+            for (Object[] objTmp : resultList)
+            {
+                TimeCompeticao tcTmp = (TimeCompeticao) objTmp[0];
+                tcTmp.setRevType(objTmp[2].toString());
+                if (tcTmp.getCompeticao() != null)
+                {
+                    tcTmp.getCompeticao().getCodigo();
+                }
+                if (tcTmp.getTime() != null)   
+                {
+                    tcTmp.getTime().getCodigo();
+                }
+                listaAuditada.add(contador, tcTmp);
+                contador++;
+            }
+
+            transacao.commit();
+            return listaAuditada;
+        }
+        catch (HibernateException e)
+        {
+            throw new Exception("Não foi possível buscar a auditoria. Erro: " + e.getMessage());
         }
     }
     
