@@ -85,6 +85,16 @@ public class Apostador implements Serializable
     {
     }
 
+    public Apostador(String nome, String cpf, Date dataNascimento, String email, String apelido, Time timeDePreferencia, Grupo grupo) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+        this.email = email;
+        this.apelido = apelido;
+        this.timeDePreferencia = timeDePreferencia;
+        this.grupo = grupo;
+    }
+
     public Integer getCodigo()
     {
         return codigo;

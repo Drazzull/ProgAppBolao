@@ -46,6 +46,10 @@ public class Grupo implements Serializable {
     {
     }
 
+    public Grupo(String nome) {
+        this.nome = nome;
+    }
+
     public Integer getCodigo()
     {
         return codigo;

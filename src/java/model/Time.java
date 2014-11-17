@@ -63,7 +63,7 @@ public class Time implements Serializable
     @Column(name = "endereco", nullable = true)
     private String endereco;
     
-    @Column(name = "descricao", nullable = false)
+    @Column(name = "descricao", columnDefinition = "TEXT NOT NULL")
     private String descricao;
     
     @Transient
@@ -80,6 +80,20 @@ public class Time implements Serializable
         this.dataCadastro = new Date(System.currentTimeMillis());
     }
 
+    public Time(String nome, Date dataFundacao, String cidade, String site, String email, String fone, String endereco, String descricao) {
+        this.nome = nome;
+        this.dataCadastro = new Date(System.currentTimeMillis());
+        this.dataFundacao = dataFundacao;
+        this.cidade = cidade;
+        this.site = site;
+        this.email = email;
+        this.fone = fone;
+        this.endereco = endereco;
+        this.descricao = descricao;
+    }
+    
+    
+    
     /**
      * Obtém o código do time
      *
