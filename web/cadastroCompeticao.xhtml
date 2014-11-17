@@ -25,7 +25,20 @@ and open the template in the editor.
                 <fieldset>
                     <legend>Dados da Competição</legend>
                     <h:panelGrid columns="2">
-                        
+                        <h:outputLabel value="Nome" for="txtNome" />
+                        <h:inputText id="txtNome" styleClass="form-control" maxlength="100" value="#{competicaoBean.competicao.nome}"/>
+                        <h:outputLabel value="Data de Início" for="txtDataInicio" />
+                        <h:inputText id="txtDataInicio" styleClass="form-control" size="20" value="#{competicaoBean.competicao.dataInicio}"
+                                     required="true">
+                            <f:convertDateTime type="date" pattern="dd/MM/yyyy" dateStyle="medium" locale="pt_BR" timeZone="GMT-3"/>
+                        </h:inputText>
+                        <h:outputLabel value="Data de Término" for="txtDataFim" />
+                        <h:inputText id="txtDataFim" styleClass="form-control" size="20" value="#{competicaoBean.competicao.dataFim}"
+                                     required="true">
+                            <f:convertDateTime type="date" pattern="dd/MM/yyyy" dateStyle="medium" locale="pt_BR" timeZone="GMT-3"/>
+                        </h:inputText>
+                        <label>&nbsp; </label>
+                        <h:commandButton id="btnInserir" styleClass="btn btn-default" value="Salvar" action="#{competicaoBean.salvar}"/>
                     </h:panelGrid>
                 </fieldset>
             </h:form>
