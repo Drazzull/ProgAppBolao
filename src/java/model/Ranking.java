@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.io.Serializable;
@@ -25,84 +24,101 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "ranking")
-public class Ranking implements Serializable{
+public class Ranking implements Serializable
+{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_ranking", nullable = false)
     private Integer codigo;
-    
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cod_rodada")
     private Rodada rodada;
-    
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cod_apostador")
     private Apostador apostador;
-    
+
     private Long pontuacao;
-    
+
     @Transient
     private boolean editando;
 
-    public Integer getCodigo() {
+    public Integer getCodigo()
+    {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
+    public void setCodigo(Integer codigo)
+    {
         this.codigo = codigo;
     }
 
-    public Rodada getRodada() {
+    public Rodada getRodada()
+    {
         return rodada;
     }
 
-    public void setRodada(Rodada rodada) {
+    public void setRodada(Rodada rodada)
+    {
         this.rodada = rodada;
     }
 
-    public Apostador getApostador() {
+    public Apostador getApostador()
+    {
         return apostador;
     }
 
-    public void setApostador(Apostador apostador) {
+    public void setApostador(Apostador apostador)
+    {
         this.apostador = apostador;
     }
 
-    public Long getPontuacao() {
+    public Long getPontuacao()
+    {
         return pontuacao;
     }
 
-    public void setPontuacao(Long pontuacao) {
+    public void setPontuacao(Long pontuacao)
+    {
         this.pontuacao = pontuacao;
     }
 
-    public boolean isEditando() {
+    public boolean isEditando()
+    {
         return editando;
     }
 
-    public void setEditando(boolean editando) {
+    public void setEditando(boolean editando)
+    {
         this.editando = editando;
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         int hash = 5;
         hash = 23 * hash + Objects.hashCode(this.codigo);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
+    public boolean equals(Object obj)
+    {
+        if (obj == null)
+        {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass())
+        {
             return false;
         }
         final Ranking other = (Ranking) obj;
-        if (!Objects.equals(this.codigo, other.codigo)) {
+        if (!Objects.equals(this.codigo, other.codigo))
+        {
             return false;
         }
         return true;
-    }     
+    }
 }

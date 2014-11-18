@@ -25,11 +25,22 @@ and open the template in the editor.
                 <fieldset>
                     <legend>Dados da Rodada</legend>
                     <h:panelGrid columns="2">
+                        <h:outputLabel value="Nome" for="txtNome" />
+                        <h:inputText id="txtNome" styleClass="form-control" maxlength="100" value="#{rodadaBean.rodada.nome}"/>
                         <h:outputLabel value="Data de Término" for="txtDataFimApostas" />
-                        <h:inputText id="txtDataFundacao" styleClass="form-control" size="20" value="#{rodadaBean.rodada.dataFimApostas}"
+                        <h:inputText id="txtDataFimApostas" styleClass="form-control" size="20" value="#{rodadaBean.rodada.dataFimApostas}"
                                      required="true">
                             <f:convertDateTime type="date" pattern="dd/MM/yyyy" dateStyle="medium" locale="pt_BR" timeZone="GMT-3"/>
                         </h:inputText>
+                        <h:outputLabel for="cmbCompeticoes" value="Competição" />
+                        <h:selectOneMenu styleClass="form-control" id="cmbGrupo"
+                                         value="#{rodadaBean.rodada.competicao}"
+                                         converter="competicaoConverter">
+                            <f:selectItem itemLabel="Selecione a competição..." />
+                            <f:selectItems value="#{rodadaBean.competicoes}" var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
+                        </h:selectOneMenu>
+                        <label>&nbsp; </label>
+                        <h:commandButton id="btnSalvar" styleClass="btn btn-default" value="Salvar" action="#{rodadaBean.salvar}"/>
                     </h:panelGrid>
                 </fieldset>
             </h:form>

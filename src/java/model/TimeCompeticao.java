@@ -10,7 +10,6 @@ package model;
  * @author José Luiz
  */
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,14 +19,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.hibernate.envers.Audited;
 
 @Entity
 @Table(name = "time_competicao")
-public class TimeCompeticao implements Serializable {
+public class TimeCompeticao implements Serializable
+{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_time_competicao", nullable = false)
@@ -37,7 +37,7 @@ public class TimeCompeticao implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cod_time")
     private Time time;
-    
+
     @Audited
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cod_competicao")
@@ -51,7 +51,7 @@ public class TimeCompeticao implements Serializable {
 
     @Transient
     private String revType;
-    
+
     public TimeCompeticao()
     {
     }
@@ -66,19 +66,23 @@ public class TimeCompeticao implements Serializable {
         this.codigo = codigo;
     }
 
-    public Competicao getCompeticao() {
+    public Competicao getCompeticao()
+    {
         return competicao;
     }
 
-    public void setCompeticao(Competicao competicao) {
+    public void setCompeticao(Competicao competicao)
+    {
         this.competicao = competicao;
     }
 
-    public Time getTime() {
+    public Time getTime()
+    {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(Time time)
+    {
         this.time = time;
     }
 
@@ -92,19 +96,23 @@ public class TimeCompeticao implements Serializable {
         this.editando = editando;
     }
 
-    public Integer getRev() {
+    public Integer getRev()
+    {
         return rev;
     }
 
-    public void setRev(Integer rev) {
+    public void setRev(Integer rev)
+    {
         this.rev = rev;
     }
 
-    public String getRevType() {
+    public String getRevType()
+    {
         return revType;
     }
 
-    public void setRevType(String revType) {
+    public void setRevType(String revType)
+    {
         this.revType = revType;
     }
 

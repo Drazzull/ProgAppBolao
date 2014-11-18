@@ -9,15 +9,15 @@ package converter;
  *
  * @author Drazzull
  */
-import dao.TimeDao;
+import dao.CompeticaoDao;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import model.Time;
+import model.Competicao;
 
-@FacesConverter(value = "timeConverter")
-public class TimeConverter implements Converter
+@FacesConverter(value = "competicaoConverter")
+public class CompeticaoConverter implements Converter
 {
 
     @Override
@@ -28,17 +28,17 @@ public class TimeConverter implements Converter
             return null;
         }
 
-        TimeDao dao = new TimeDao();
+        CompeticaoDao dao = new CompeticaoDao();
         return dao.buscar(Integer.valueOf(value));
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value)
     {
-        if (value instanceof Time)
+        if (value instanceof Competicao)
         {
-            Time time = (Time) value;
-            return String.valueOf(time.getCodigo());
+            Competicao competicao = (Competicao) value;
+            return String.valueOf(competicao.getCodigo());
         }
 
         return "";

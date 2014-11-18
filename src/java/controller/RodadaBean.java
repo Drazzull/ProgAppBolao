@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
+import dao.CompeticaoDao;
 import dao.RodadaDao;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import model.Competicao;
 import model.Rodada;
 
 /**
@@ -20,9 +21,10 @@ import model.Rodada;
 @SessionScoped
 public class RodadaBean
 {
-    
+
     RodadaDao rodadaDao = new RodadaDao();
     private Rodada rodada = new Rodada();
+    private final CompeticaoDao competicaoDao = new CompeticaoDao();
 
     public Rodada getRodada()
     {
@@ -64,5 +66,10 @@ public class RodadaBean
         this.rodadaDao.excluir(rodada);
         this.rodada = new Rodada();
         return "listarRodadas";
+    }
+
+    public List<Competicao> getCompeticoes()
+    {
+        return this.competicaoDao.listar();
     }
 }
