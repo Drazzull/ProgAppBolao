@@ -23,6 +23,70 @@ and open the template in the editor.
             <h:form id="frmPrincipal" styleClass="form-horizontal">
                 <fieldset>
                     <legend>Listagem de Jogos</legend>
+                    <h:dataTable id="itens" value="#{jogoBean.jogos}" var="item" border="1" width="100%">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Código" />
+                            </f:facet>
+                            <h:outputText value="#{item.codigo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Time 1" />
+                            </f:facet>
+                            <h:outputText value="#{item.time1.time.nome}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Placar Time 1" />
+                            </f:facet>
+                            <h:outputText value="#{item.placarTime1}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Time 2" />
+                            </f:facet>
+                            <h:outputText value="#{item.time2.time.nome}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Placar Time 2" />
+                            </f:facet>
+                            <h:outputText value="#{item.placarTime2}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Data do Jogo" />
+                            </f:facet>
+                            <h:outputFormat value="{0, date, dd/MM/YYYY}">
+                                <f:param value="#{item.dataJogo}" />
+                            </h:outputFormat>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Vencedor" />
+                            </f:facet>
+                            <h:outputText value="#{item.vencedor.nome}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Rodada" />
+                            </f:facet>
+                            <h:outputText value="#{item.rodada.nome}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Editar" />
+                            </f:facet>
+                            <h:commandButton id="btnEditar" styleClass="btn btn-default" value="Editar" action="#{jogoBean.editarItem(item)}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Excluir" />
+                            </f:facet>
+                            <h:commandButton id="btnExcluir" styleClass="btn btn-default" value="Excluir" action="#{jogoBean.excluirItem(item)}"/>
+                        </h:column>
+                    </h:dataTable>
                 </fieldset>
             </h:form>
         </div>

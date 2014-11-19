@@ -37,7 +37,7 @@ and open the template in the editor.
                                          value="#{rodadaBean.rodada.competicao}"
                                          converter="competicaoConverter">
                             <f:selectItem itemLabel="Selecione a competição..." />
-                            <f:selectItems value="#{rodadaBean.competicoes}" var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
+                            <f:selectItems value="#{competicaoBean.competicoes}" var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
                         </h:selectOneMenu>
                         <label>&nbsp; </label>
                         <h:commandButton id="btnSalvar" styleClass="btn btn-default" value="Salvar" action="#{rodadaBean.salvar}"/>
