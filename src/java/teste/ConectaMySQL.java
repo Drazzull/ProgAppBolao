@@ -105,9 +105,37 @@ public class ConectaMySQL {
             for(Grupo g : grupos)
                 grupoDAO.salvar(g);
             
+            Date data_nasc;
             ApostadorDao apostadorDAO = new ApostadorDao();
             List<Apostador> apostadores = new ArrayList<>();
             
-            Apostador alana = new Apostador();
+            data_nasc = sdf.parse("1994-05-14");
+            Apostador alana = new Apostador("Alana Matielo", "89553644660", data_nasc, "aladeli@hotmail.com", "lana_delicia", inter, grupob);
+            apostadores.add(alana);
+            data_nasc = null;
+            
+            data_nasc = sdf.parse("1930-11-10");
+            Apostador van = new Apostador("Van Hohenheim", "26835321806", data_nasc, "heimchan@gmail.com", "van", mengao, grupob);
+            apostadores.add(van);
+            data_nasc = null;
+            
+            data_nasc = sdf.parse("1942-11-18");
+            Apostador ishin = new Apostador("Ishin Shiba", "62828459128", data_nasc, "ishin69@gmail.com", "ishi_taichou", cruzeiro, grupoa);
+            apostadores.add(ishin);
+            data_nasc = null;
+            
+            data_nasc = sdf.parse("1985-08-15");
+            Apostador boruto = new Apostador("Bolt Uzumaki", "18826946272", data_nasc, "n1boruto@gmail.com", "parafuso", sao_paulo, grupoa);
+            apostadores.add(boruto);
+            data_nasc = null;
+            
+            data_nasc = sdf.parse("1912-10-06");
+            Apostador madara = new Apostador("Madara Uchiha", "54517155994", data_nasc, "madara666@gmail.com", "diva_lendaria", cruzeiro, grupoa);
+            apostadores.add(madara);
+            data_nasc = null;
+             
+             for(Apostador a : apostadores)
+                 apostadorDAO.salvar(a);
+            
 }
 }
