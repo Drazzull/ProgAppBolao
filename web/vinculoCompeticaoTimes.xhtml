@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Gerenciamento de Bolão</title>
+        <link href="css/Estilo.css" rel="stylesheet" type="text/css" media="all"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+        <c:set var="nav" value="E" scope="session"/>
+        <ui:include src="cabecalho.xhtml"></ui:include>
+        <div id="container">
+            <h:form enctype="multipart/form-data">
+                <fieldset>
+                    <legend>Dados do Time</legend>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel for="cmbCompeticoes" value="Competição" />
+                        <h:selectOneMenu styleClass="form-control" id="cmbGrupo"
+                                         value="#{timeCompeticaoBean.competicao}"
+                                         converter="competicaoConverter">
+                            <f:selectItem itemLabel="Selecione a competição..." />
+                            <f:selectItems value="#{competicaoBean.competicoes}" var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
+                            <f:ajax render="@form" />
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+
+                    <fieldset>
+                        <c:if test="#{timeCompeticaoBean.competicao != null}">
+                            <legend>Escolha os Times da Competição</legend>
+                        </c:if>
+
+                        <h:dataTable rendered="#{timeCompeticaoBean.competicao != null}"
+                                     id="itens"
+                                     value="#{timeCompeticaoBean.times}"
+                                     var="item"
+                                     border="1"
+                                     width="100%">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Código" />
+                                </f:facet>
+                                <h:outputText value="#{item.codigo}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nome" />
+                                </f:facet>
+                                <h:outputText value="#{item.nome}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Logo" />
+                                </f:facet>
+
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Data de Cadastro" />
+                                </f:facet>
+                                <h:outputFormat value="{0, date, dd/MM/YYYY}">
+                                    <f:param value="#{item.dataCadastro}" />
+                                </h:outputFormat>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Data de Fundação" />
+                                </f:facet>
+                                <h:outputFormat value="{0, date, dd/MM/YYYY}">
+                                    <f:param value="#{item.dataFundacao}" />
+                                </h:outputFormat>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Cidade" />
+                                </f:facet>
+                                <h:outputText value="#{item.cidade}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Site" />
+                                </f:facet>
+                                <h:outputText value="#{item.site}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="E-mail" />
+                                </f:facet>
+                                <h:outputText value="#{item.email}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fone" />
+                                </f:facet>
+                                <h:outputText value="#{item.fone}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Endereço" />
+                                </f:facet>
+                                <h:outputText value="#{item.endereco}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Descrição" />
+                                </f:facet>
+                                <h:outputText value="#{item.descricao}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Vincular" />
+                                </f:facet>
+                                <h:commandButton id="btnVincular"
+                                                 styleClass="btn btn-default"
+                                                 value="#{item.vinculado ? 'Desvincular' : 'Vincular' }"
+                                                 action="#{timeCompeticaoBean.vincularTime(item)}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </fieldset>
+                </fieldset>
+            </h:form>
+        </div>
+
+        <script src="js/jquery.min.js"/>
+        <script src="js/funcoes.js"/>
+        <script src="js/bootstrap.min.js"/>
+    </h:body>
+</html>

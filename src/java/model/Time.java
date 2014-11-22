@@ -75,6 +75,9 @@ public class Time implements Serializable
     @Transient
     private String revType;
 
+    @Transient
+    private boolean vinculado;
+    
     public Time()
     {
         this.dataCadastro = new Date(System.currentTimeMillis());
@@ -328,6 +331,16 @@ public class Time implements Serializable
 
     public void setRevType(String revType) {
         this.revType = revType;
+    }
+
+    public boolean isVinculado()
+    {
+        return vinculado;
+    }
+
+    public void setVinculado(boolean vinculado)
+    {
+        this.vinculado = vinculado;
     }
     
     @Override

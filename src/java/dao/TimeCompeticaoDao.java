@@ -8,9 +8,12 @@ package dao;
 import conexao.Hibernate4Util;
 import java.util.ArrayList;
 import java.util.List;
+import model.Competicao;
+import model.Time;
 import model.TimeCompeticao;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -21,7 +24,8 @@ import org.hibernate.envers.AuditReaderFactory;
  *
  * @author José Luiz
  */
-public class TimeCompeticaoDao {
+public class TimeCompeticaoDao
+{
 
     public void salvar(TimeCompeticao tc)
     {
@@ -74,7 +78,7 @@ public class TimeCompeticaoDao {
                 {
                     tcTmp.getCompeticao().getCodigo();
                 }
-                if (tcTmp.getTime() != null)   
+                if (tcTmp.getTime() != null)
                 {
                     tcTmp.getTime().getCodigo();
                 }
@@ -90,7 +94,7 @@ public class TimeCompeticaoDao {
             throw new Exception("Não foi possível buscar a auditoria. Erro: " + e.getMessage());
         }
     }
-    
+
     public TimeCompeticao buscar(int valor)
     {
         try
@@ -109,5 +113,31 @@ public class TimeCompeticaoDao {
         }
 
         return null;
-    }    
+    }
+
+    public TimeCompeticao buscarRegistro(Time time, Competicao competicao)
+    {
+        try
+        {
+            Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
+            Query consulta = sessao.createQuery("SELECT tc "
+                    + " FROM TimeCompeticao tc"
+                    + " INNER JOIN tc.time AS tm"
+                    + " INNER JOIN tc.competicao AS cm"
+                    + " WHERE (tm = ?) AND (cm = ?)");
+            consulta.setEntity(0, time);
+            consulta.setEntity(1, competicao);
+
+            TimeCompeticao resultado = (TimeCompeticao) consulta.uniqueResult();
+            transacao.commit();
+            return resultado;
+        }
+        catch (HibernateException e)
+        {
+            System.out.println("Não foi possível buscar o apostador. Erro: " + e.getMessage());
+        }
+
+        return null;
+    }
 }
