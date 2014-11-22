@@ -11,15 +11,12 @@ package model;
  */
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,7 +26,8 @@ import org.hibernate.envers.Audited;
 @Entity
 @Audited
 @Table(name = "competicao")
-public class Competicao implements Serializable{
+public class Competicao implements Serializable
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,7 +44,7 @@ public class Competicao implements Serializable{
     @Temporal(TemporalType.DATE)
     @Column(name = "dt_fim", nullable = false)
     private Date dataFim;
-    
+
     @Transient
     private boolean editando;
 
@@ -55,7 +53,7 @@ public class Competicao implements Serializable{
 
     @Transient
     private String revType;
-    
+
     public Competicao()
     {
     }
@@ -99,7 +97,7 @@ public class Competicao implements Serializable{
     {
         this.dataFim = dataFim;
     }
-        
+
     public boolean isEditando()
     {
         return editando;
@@ -110,19 +108,23 @@ public class Competicao implements Serializable{
         this.editando = editando;
     }
 
-    public Integer getRev() {
+    public Integer getRev()
+    {
         return rev;
     }
 
-    public void setRev(Integer rev) {
+    public void setRev(Integer rev)
+    {
         this.rev = rev;
     }
 
-    public String getRevType() {
+    public String getRevType()
+    {
         return revType;
     }
 
-    public void setRevType(String revType) {
+    public void setRevType(String revType)
+    {
         this.revType = revType;
     }
 
@@ -152,5 +154,4 @@ public class Competicao implements Serializable{
         }
         return true;
     }
-
 }

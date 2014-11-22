@@ -24,6 +24,47 @@ and open the template in the editor.
             <h:form enctype="multipart/form-data">
                 <fieldset>
                     <legend>Dados do Jogo</legend>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel for="cmbTime1" value="Time 1" />
+                        <h:selectOneMenu styleClass="form-control" id="cmbTime1"
+                                         value="#{jogoBean.jogo.time1}"
+                                         converter="timeConverter">
+                            <f:selectItem itemLabel="Selecione o time..." />
+                            <f:selectItems value="#{timeBean.times}" var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Placar Time 2" for="txtPlacar2" />
+                        <h:inputText id="txtPlacar2" styleClass="form-control" maxlength="100" value="#{jogoBean.jogo.placarTime2}"/>
+                        <h:outputLabel for="cmbTime2" value="Time 2" />
+                        <h:selectOneMenu styleClass="form-control" id="cmbTime2"
+                                         value="#{jogoBean.jogo.time2}"
+                                         converter="timeConverter">
+                            <f:selectItem itemLabel="Selecione o time..." />
+                            <f:selectItems value="#{timeBean.times}" var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Placar Time 2" for="txtPlacar2" />
+                        <h:inputText id="txtPlacar2" styleClass="form-control" maxlength="100" value="#{jogoBean.jogo.placarTime2}"/>
+                        <h:outputLabel value="Data do Jogo" for="txtDataJogo" />
+                        <h:inputText id="txtDataJogo" styleClass="form-control" size="20" value="#{jogoBean.jogo.dataJogo}"
+                                     required="true">
+                            <f:convertDateTime type="date" pattern="dd/MM/yyyy" dateStyle="medium" locale="pt_BR" timeZone="GMT-3"/>
+                        </h:inputText>
+                        <h:outputLabel for="cmbVencedor" value="Vencedor" />
+                        <h:selectOneMenu styleClass="form-control" id="cmbVencedor"
+                                         value="#{jogoBean.jogo.vencedor}"
+                                         converter="timeConverter">
+                            <f:selectItem itemLabel="Selecione o vencedor..." />
+                            <f:selectItems value="#{timeBean.times}" var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
+                        </h:selectOneMenu>
+                        <h:outputLabel for="cmbRodada" value="Rodada" />
+                        <h:selectOneMenu styleClass="form-control" id="cmbRodada"
+                                         value="#{jogoBean.jogo.rodada}"
+                                         converter="rodadaConverter">
+                            <f:selectItem itemLabel="Selecione a Rodada..." />
+                            <f:selectItems value="#{rodadaBean.rodadas}" var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
+                        </h:selectOneMenu>
+                        <label>&nbsp; </label>
+                        <h:commandButton id="btnInserir" styleClass="btn btn-default" value="Salvar" action="#{competicaoBean.salvar}"/>
+                    </h:panelGrid>
                 </fieldset>
             </h:form>
         </div>

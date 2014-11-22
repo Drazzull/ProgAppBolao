@@ -23,7 +23,8 @@ import org.hibernate.envers.Audited;
 @Entity
 @Audited
 @Table(name = "grupo")
-public class Grupo implements Serializable {
+public class Grupo implements Serializable
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +36,7 @@ public class Grupo implements Serializable {
 
     @Transient
     private boolean editando;
-    
+
     @Transient
     private Integer rev;
 
@@ -46,7 +47,8 @@ public class Grupo implements Serializable {
     {
     }
 
-    public Grupo(String nome) {
+    public Grupo(String nome)
+    {
         this.nome = nome;
     }
 
@@ -80,22 +82,26 @@ public class Grupo implements Serializable {
         this.editando = editando;
     }
 
-    public Integer getRev() {
+    public Integer getRev()
+    {
         return rev;
     }
 
-    public void setRev(Integer rev) {
+    public void setRev(Integer rev)
+    {
         this.rev = rev;
     }
 
-    public String getRevType() {
+    public String getRevType()
+    {
         return revType;
     }
 
-    public void setRevType(String revType) {
+    public void setRevType(String revType)
+    {
         this.revType = revType;
     }
-    
+
     @Override
     public int hashCode()
     {
@@ -122,5 +128,4 @@ public class Grupo implements Serializable {
         }
         return true;
     }
-
 }

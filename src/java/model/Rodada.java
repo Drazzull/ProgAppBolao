@@ -46,14 +46,17 @@ public class Rodada implements Serializable
     @JoinColumn(name = "cod_competicao")
     private Competicao competicao;
 
+    @Column(name = "nome", length = 100, nullable = false)
+    private String nome;
+
     @Transient
     private boolean editando;
-    
+
     @Transient
     private Integer rev;
 
     @Transient
-    private String revType;    
+    private String revType;
 
     public Rodada()
     {
@@ -99,20 +102,34 @@ public class Rodada implements Serializable
         this.editando = editando;
     }
 
-    public Integer getRev() {
+    public Integer getRev()
+    {
         return rev;
     }
 
-    public void setRev(Integer rev) {
+    public void setRev(Integer rev)
+    {
         this.rev = rev;
     }
 
-    public String getRevType() {
+    public String getRevType()
+    {
         return revType;
     }
 
-    public void setRevType(String revType) {
+    public void setRevType(String revType)
+    {
         this.revType = revType;
+    }
+
+    public String getNome()
+    {
+        return nome;
+    }
+
+    public void setNome(String nome)
+    {
+        this.nome = nome;
     }
 
     @Override
@@ -141,5 +158,4 @@ public class Rodada implements Serializable
         }
         return true;
     }
-
 }

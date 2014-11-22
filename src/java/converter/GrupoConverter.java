@@ -21,21 +21,19 @@ public class GrupoConverter implements Converter
 {
 
     @Override
-    public Object getAsObject(FacesContext context, UIComponent component,
-            String value)
+    public Object getAsObject(FacesContext context, UIComponent component, String value)
     {
         if ((value == null) || value.equals(""))
         {
             return null;
         }
-        
+
         GrupoDao dao = new GrupoDao();
         return dao.buscar(Integer.valueOf(value));
     }
 
     @Override
-    public String getAsString(FacesContext context, UIComponent component,
-            Object value)
+    public String getAsString(FacesContext context, UIComponent component, Object value)
     {
         if (value instanceof Grupo)
         {

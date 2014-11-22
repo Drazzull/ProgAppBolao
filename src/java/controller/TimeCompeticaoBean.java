@@ -55,7 +55,7 @@ public class TimeCompeticaoBean
                 time.setVinculado(true);
             }
         }
-        
+
         // retorna a lista atualizada
         return listaTimes;
     }

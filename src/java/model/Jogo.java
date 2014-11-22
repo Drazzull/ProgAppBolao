@@ -26,7 +26,6 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import org.hibernate.envers.Audited;
 
-
 @Entity
 @Table(name = "jogo")
 public class Jogo implements Serializable
@@ -40,7 +39,7 @@ public class Jogo implements Serializable
     @Audited
     // Conferir Mapeamento
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cod_time1",referencedColumnName = "cod_time_competicao")
+    @JoinColumn(name = "cod_time1", referencedColumnName = "cod_time_competicao")
     private TimeCompeticao time1;
 
     @Audited
@@ -80,7 +79,7 @@ public class Jogo implements Serializable
 
     @Transient
     private String revType;
-    
+
     public Jogo()
     {
     }
@@ -95,11 +94,13 @@ public class Jogo implements Serializable
         this.codigo = codigo;
     }
 
-    public TimeCompeticao getTime1() {
+    public TimeCompeticao getTime1()
+    {
         return time1;
     }
 
-    public void setTime1(TimeCompeticao time1) {
+    public void setTime1(TimeCompeticao time1)
+    {
         this.time1 = time1;
     }
 
@@ -113,11 +114,13 @@ public class Jogo implements Serializable
         this.placarTime1 = placarTime1;
     }
 
-    public TimeCompeticao getTime2() {
+    public TimeCompeticao getTime2()
+    {
         return time2;
     }
 
-    public void setTime2(TimeCompeticao time2) {
+    public void setTime2(TimeCompeticao time2)
+    {
         this.time2 = time2;
     }
 
@@ -171,22 +174,26 @@ public class Jogo implements Serializable
         this.editando = editando;
     }
 
-    public Integer getRev() {
+    public Integer getRev()
+    {
         return rev;
     }
 
-    public void setRev(Integer rev) {
+    public void setRev(Integer rev)
+    {
         this.rev = rev;
     }
 
-    public String getRevType() {
+    public String getRevType()
+    {
         return revType;
     }
 
-    public void setRevType(String revType) {
+    public void setRevType(String revType)
+    {
         this.revType = revType;
     }
-  
+
     @Override
     public int hashCode()
     {
@@ -213,5 +220,4 @@ public class Jogo implements Serializable
         }
         return true;
     }
-
 }

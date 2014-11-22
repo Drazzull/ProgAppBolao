@@ -71,7 +71,7 @@ public class Aposta implements Serializable
 
     @Transient
     private String revType;
-    
+
     public Aposta()
     {
     }
@@ -156,19 +156,23 @@ public class Aposta implements Serializable
         this.editando = editando;
     }
 
-    public Integer getRev() {
+    public Integer getRev()
+    {
         return rev;
     }
 
-    public void setRev(Integer rev) {
+    public void setRev(Integer rev)
+    {
         this.rev = rev;
     }
 
-    public String getRevType() {
+    public String getRevType()
+    {
         return revType;
     }
 
-    public void setRevType(String revType) {
+    public void setRevType(String revType)
+    {
         this.revType = revType;
     }
 
@@ -198,5 +202,4 @@ public class Aposta implements Serializable
         }
         return true;
     }
-
 }

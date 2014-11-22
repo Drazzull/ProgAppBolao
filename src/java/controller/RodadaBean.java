@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import dao.RodadaDao;
@@ -20,7 +19,7 @@ import model.Rodada;
 @SessionScoped
 public class RodadaBean
 {
-    
+
     RodadaDao rodadaDao = new RodadaDao();
     private Rodada rodada = new Rodada();
 

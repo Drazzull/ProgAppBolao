@@ -11,15 +11,12 @@ package model;
  */
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,39 +33,39 @@ public class Time implements Serializable
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_time", nullable = false)
     private Integer codigo;
-    
+
     @Column(name = "nome", length = 100, nullable = false)
     private String nome;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "dt_cadastro", nullable = false)
     private Date dataCadastro;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "dt_fundacao", nullable = false)
     private Date dataFundacao;
-    
+
     @Column(name = "cidade", nullable = false)
     private String cidade;
-    
+
     @Column(name = "site", nullable = true)
     private String site;
-    
+
     @Column(name = "email", nullable = false)
     private String email;
-    
+
     @Column(name = "fone", nullable = false)
     private String fone;
-    
+
     @Column(name = "endereco", nullable = true)
     private String endereco;
-    
-    @Column(name = "descricao", columnDefinition = "TEXT NOT NULL")
+
+    @Column(name = "descricao", nullable = false)
     private String descricao;
-    
+
     @Transient
     private boolean editando;
-    
+
     @Transient
     private Integer rev;
 
@@ -77,13 +74,14 @@ public class Time implements Serializable
 
     @Transient
     private boolean vinculado;
-    
+
     public Time()
     {
         this.dataCadastro = new Date(System.currentTimeMillis());
     }
 
-    public Time(String nome, Date dataFundacao, String cidade, String site, String email, String fone, String endereco, String descricao) {
+    public Time(String nome, Date dataFundacao, String cidade, String site, String email, String fone, String endereco, String descricao)
+    {
         this.nome = nome;
         this.dataCadastro = new Date(System.currentTimeMillis());
         this.dataFundacao = dataFundacao;
@@ -94,9 +92,7 @@ public class Time implements Serializable
         this.endereco = endereco;
         this.descricao = descricao;
     }
-    
-    
-    
+
     /**
      * Obtém o código do time
      *
@@ -296,7 +292,7 @@ public class Time implements Serializable
     {
         this.descricao = descricao;
     }
-    
+
     /**
      * Verifica se o objeto está sendo editado
      *
@@ -317,19 +313,23 @@ public class Time implements Serializable
         this.editando = editando;
     }
 
-    public Integer getRev() {
+    public Integer getRev()
+    {
         return rev;
     }
 
-    public void setRev(Integer rev) {
+    public void setRev(Integer rev)
+    {
         this.rev = rev;
     }
 
-    public String getRevType() {
+    public String getRevType()
+    {
         return revType;
     }
 
-    public void setRevType(String revType) {
+    public void setRevType(String revType)
+    {
         this.revType = revType;
     }
 
@@ -342,7 +342,7 @@ public class Time implements Serializable
     {
         this.vinculado = vinculado;
     }
-    
+
     @Override
     public int hashCode()
     {
