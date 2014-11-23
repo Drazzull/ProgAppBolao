@@ -6,10 +6,16 @@
 package controller;
 
 import dao.JogoDao;
+import dao.TimeCompeticaoDao;
+import dao.TimeDao;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import model.Competicao;
 import model.Jogo;
+import model.Rodada;
+import model.Time;
+import model.TimeCompeticao;
 
 /**
  *
@@ -22,6 +28,8 @@ public class JogoBean
 
     JogoDao jogoDao = new JogoDao();
     private Jogo jogo = new Jogo();
+    private final TimeDao timeDao = new TimeDao();
+    private final TimeCompeticaoDao timeCompeticaoDao = new TimeCompeticaoDao();
 
     public Jogo getJogo()
     {
@@ -63,5 +71,31 @@ public class JogoBean
         this.jogoDao.excluir(jogo);
         this.jogo = new Jogo();
         return "listarJogos";
+    }
+
+    public List<Time> getTimesRodada()
+    {
+        if (this.jogo.getRodada() == null)
+        {
+            return null;
+        }
+
+        Competicao competicaoTmp = this.jogo.getRodada().getCompeticao();
+
+        // Obtém a lista de cadastros de times
+        List<Time> listaTimesTmp = this.timeDao.listar();
+        List<Time> listaTimes = this.timeDao.listar();
+        for (Time time : listaTimes)
+        {
+            // Busca a combinação de time/competição, se encontrou é porque o time está vinculado
+            TimeCompeticao timeCompeticaoTemp = this.timeCompeticaoDao.buscarRegistro(time, competicaoTmp);
+            if (timeCompeticaoTemp == null)
+            {
+                listaTimesTmp.remove(time);
+            }
+        }
+
+        // retorna a lista atualizada
+        return listaTimesTmp;
     }
 }
