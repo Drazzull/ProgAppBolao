@@ -45,6 +45,17 @@ public class Ranking implements Serializable
     @Transient
     private boolean editando;
 
+    public Ranking()
+    {
+    }
+
+    public Ranking(Rodada rodada, Apostador apostador, Long pontuacao)
+    {
+        this.rodada = rodada;
+        this.apostador = apostador;
+        this.pontuacao = pontuacao;
+    }
+
     public Integer getCodigo()
     {
         return codigo;

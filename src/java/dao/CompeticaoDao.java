@@ -11,6 +11,7 @@ import java.util.List;
 import model.Competicao;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -21,7 +22,8 @@ import org.hibernate.envers.AuditReaderFactory;
  *
  * @author José Luiz
  */
-public class CompeticaoDao {
+public class CompeticaoDao
+{
 
     public void salvar(Competicao competicao)
     {
@@ -55,7 +57,7 @@ public class CompeticaoDao {
             throw new HibernateException(e);
         }
     }
-    
+
     public List<Competicao> listarAuditoria() throws Exception
     {
         try
@@ -82,7 +84,26 @@ public class CompeticaoDao {
             throw new Exception("Não foi possível buscar a auditoria. Erro: " + e.getMessage());
         }
     }
-    
+
+    public String buscaNomeCompeticao(Competicao competicao)
+    {
+        try
+        {
+            Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
+            Query consulta4 = sessao.createQuery("select c.nome from Competicao c where c = :competicao").setParameter("competicao", competicao);
+            String nome_competicao = (String) consulta4.uniqueResult();
+            transacao.commit();
+            return nome_competicao;
+        }
+        catch (HibernateException e)
+        {
+            System.out.println("Não foi possível buscar o apostador. Erro: " + e.getMessage());
+        }
+
+        return null;
+    }
+
     public Competicao buscar(int valor)
     {
         try

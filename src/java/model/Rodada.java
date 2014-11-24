@@ -49,6 +49,9 @@ public class Rodada implements Serializable
     @Column(name = "nome", length = 100, nullable = false)
     private String nome;
 
+    @Column(name = "fechada")
+    private Boolean fechada;
+
     @Transient
     private boolean editando;
 
@@ -60,6 +63,13 @@ public class Rodada implements Serializable
 
     public Rodada()
     {
+    }
+
+    public Rodada(Date dataFimApostas, Competicao competicao, Boolean fechada)
+    {
+        this.dataFimApostas = dataFimApostas;
+        this.competicao = competicao;
+        this.fechada = fechada;
     }
 
     public Integer getCodigo()
@@ -130,6 +140,16 @@ public class Rodada implements Serializable
     public void setNome(String nome)
     {
         this.nome = nome;
+    }
+
+    public Boolean getFechada()
+    {
+        return fechada;
+    }
+
+    public void setFechada(Boolean fechada)
+    {
+        this.fechada = fechada;
     }
 
     @Override

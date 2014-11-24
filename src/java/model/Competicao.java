@@ -58,6 +58,13 @@ public class Competicao implements Serializable
     {
     }
 
+    public Competicao(String nome, Date dataInicio, Date dataFim)
+    {
+        this.nome = nome;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
+    }
+
     public Integer getCodigo()
     {
         return codigo;
