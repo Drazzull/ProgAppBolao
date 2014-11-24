@@ -11,6 +11,7 @@ import java.util.List;
 import model.Rodada;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -21,7 +22,8 @@ import org.hibernate.envers.AuditReaderFactory;
  *
  * @author José Luiz
  */
-public class RodadaDao {
+public class RodadaDao
+{
 
     public void salvar(Rodada rodada)
     {
@@ -56,6 +58,26 @@ public class RodadaDao {
         }
     }
 
+    public List<Rodada> listarAbertas()
+    {
+        try
+        {
+            Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
+            Query consulta = sessao.createQuery("SELECT ro "
+                    + " FROM Rodada ro"
+                    + " WHERE (fechada IS NULL) OR (fechada = false)");
+            List<Rodada> resultado = consulta.list();
+            transacao.commit();
+            return resultado;
+        }
+        catch (HibernateException e)
+        {
+            System.out.println("Não foi possível selecionar apostadores. Erro: " + e.getMessage());
+            throw new HibernateException(e);
+        }
+    }
+
     public List<Rodada> listarAuditoria() throws Exception
     {
         try
@@ -70,7 +92,7 @@ public class RodadaDao {
             {
                 Rodada rodadaTmp = (Rodada) objTmp[0];
                 rodadaTmp.setRevType(objTmp[2].toString());
-                if (rodadaTmp.getCompeticao()!= null)
+                if (rodadaTmp.getCompeticao() != null)
                 {
                     rodadaTmp.getCompeticao().getCodigo();
                 }
@@ -86,7 +108,7 @@ public class RodadaDao {
             throw new Exception("Não foi possível buscar a auditoria. Erro: " + e.getMessage());
         }
     }
-    
+
     public Rodada buscar(int valor)
     {
         try
@@ -105,5 +127,11 @@ public class RodadaDao {
         }
 
         return null;
-    }    
+    }
+
+    public void fecharRodada(Rodada rodada)
+    {
+        rodada.setFechada(Boolean.TRUE);
+        CrudGenerico.atualizar(rodada);
+    }
 }

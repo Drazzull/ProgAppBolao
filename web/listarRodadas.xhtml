@@ -23,7 +23,7 @@ and open the template in the editor.
             <h:form id="frmPrincipal" styleClass="form-horizontal">
                 <fieldset>
                     <legend>Listagem de Rodadas</legend>
-                    
+
                     <h:dataTable id="itens" value="#{rodadaBean.rodadas}" var="item" border="1" width="100%">
                         <h:column>
                             <f:facet name="header">
@@ -55,13 +55,29 @@ and open the template in the editor.
                             <f:facet name="header">
                                 <h:outputText value="Editar" />
                             </f:facet>
-                            <h:commandButton id="btnEditar" styleClass="btn btn-default" value="Editar" action="#{rodadaBean.editarItem(item)}"/>
+                            <h:commandButton id="btnEditar"
+                                             styleClass="btn btn-default"
+                                             value="Editar"
+                                             action="#{rodadaBean.editarItem(item)}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Excluir" />
                             </f:facet>
-                            <h:commandButton id="btnExcluir" styleClass="btn btn-default" value="Excluir" action="#{rodadaBean.excluirItem(item)}"/>
+                            <h:commandButton id="btnExcluir"
+                                             styleClass="btn btn-default"
+                                             value="Excluir"
+                                             action="#{rodadaBean.excluirItem(item)}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fechar Rodada"/>
+                            </f:facet>
+                            <h:commandButton id="btnFechar"
+                                             styleClass="btn btn-default"
+                                             value="#{item.fechada ? 'Fechada' : 'Fechar'}"
+                                             disabled="#{item.fechada}"
+                                             action="#{rodadaBean.fecharItem(item)}"/>
                         </h:column>
                     </h:dataTable>
                 </fieldset>

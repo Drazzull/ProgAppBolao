@@ -30,7 +30,7 @@ and open the template in the editor.
                                          value="#{jogoBean.jogo.rodada}"
                                          converter="rodadaConverter">
                             <f:selectItem itemLabel="Selecione a Rodada..." />
-                            <f:selectItems value="#{rodadaBean.rodadas}" var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
+                            <f:selectItems value="#{rodadaBean.rodadasAbertas}" var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
                             <f:ajax render="@form" />
                         </h:selectOneMenu>
                         <h:outputLabel for="cmbTime1" value="Time 1" />

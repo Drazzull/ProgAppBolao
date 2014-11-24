@@ -13,7 +13,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import model.Competicao;
 import model.Jogo;
-import model.Rodada;
 import model.Time;
 import model.TimeCompeticao;
 

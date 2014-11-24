@@ -33,6 +33,11 @@ public class RodadaBean
         return this.rodadaDao.listar();
     }
 
+    public List<Rodada> getRodadasAbertas()
+    {
+        return this.rodadaDao.listarAbertas();
+    }
+
     /*public List<Aposta> getAuditoria() throws Exception
      {
      return this.apostaDao.listarAuditoria();
@@ -62,6 +67,13 @@ public class RodadaBean
     {
         this.rodadaDao.excluir(rodada);
         this.rodada = new Rodada();
+        return "listarRodadas";
+    }
+
+    public String fecharItem(Rodada rodada)
+    {
+        this.rodada = rodada;
+        this.rodadaDao.fecharRodada(this.rodada);
         return "listarRodadas";
     }
 }
