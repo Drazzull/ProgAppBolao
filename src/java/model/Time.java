@@ -60,7 +60,7 @@ public class Time implements Serializable
     @Column(name = "endereco", nullable = true)
     private String endereco;
 
-    @Column(name = "descricao", nullable = false)
+    @Column(name = "descricao", columnDefinition = "TEXT NOT NULL")
     private String descricao;
 
     @Transient

@@ -41,7 +41,7 @@ public class ConectaMySQL {
 	} catch (Exception e){
                 System.out.println(e.getMessage());
         }
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            /*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             
             Date data_fun;
             TimeDao timeDAO = new TimeDao();
@@ -223,7 +223,7 @@ public class ConectaMySQL {
                 System.out.println("Posição: "+ra_obj.getPosicao()+" Nome: "+ra_obj.getNome()+" Pontuação: "+ra_obj.getPontuacao());
             
             
-            //System.gc();
+            //System.gc();*/
             
 }
 }
