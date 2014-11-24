@@ -65,10 +65,10 @@ public class Rodada implements Serializable
     {
     }
 
-    public Rodada(Date dataFimApostas, Competicao competicao, Boolean fechada)
-    {
+    public Rodada(Date dataFimApostas, Competicao competicao, String nome, Boolean fechada) {
         this.dataFimApostas = dataFimApostas;
         this.competicao = competicao;
+        this.nome = nome;
         this.fechada = fechada;
     }
 

@@ -41,7 +41,7 @@ public class ConectaMySQL {
 	} catch (Exception e){
                 System.out.println(e.getMessage());
         }
-            /*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             
             Date data_fun;
             TimeDao timeDAO = new TimeDao();
@@ -171,27 +171,27 @@ public class ConectaMySQL {
             List<Rodada> rodadas = new ArrayList<>();
             
             data_fim_apos = sdf.parse("2014-06-21");
-            Rodada rod1 = new Rodada(data_fim_apos, com1, Boolean.TRUE);
+            Rodada rod1 = new Rodada(data_fim_apos, com1, "Rodada1", Boolean.TRUE);
             rodadas.add(rod1);
             data_fim_apos = null;
             
             data_fim_apos = sdf.parse("2014-09-10");
-            Rodada rod2 = new Rodada(data_fim_apos, com1, Boolean.FALSE);
+            Rodada rod2 = new Rodada(data_fim_apos, com1, "Rodada2", Boolean.FALSE);
             rodadas.add(rod2);
             data_fim_apos = null;
             
             data_fim_apos = sdf.parse("2014-12-01");
-            Rodada rod3 = new Rodada(data_fim_apos, com1, Boolean.FALSE);
+            Rodada rod3 = new Rodada(data_fim_apos, com1, "Rodada3", Boolean.FALSE);
             rodadas.add(rod3);
             data_fim_apos = null;
             
             data_fim_apos = sdf.parse("2014-11-30");
-            Rodada rod4 = new Rodada(data_fim_apos, com1, Boolean.FALSE);
+            Rodada rod4 = new Rodada(data_fim_apos, com1, "Rodada1", Boolean.FALSE);
             rodadas.add(rod4);
             data_fim_apos = null;
             
             data_fim_apos = sdf.parse("2014-12-05");
-            Rodada rod5 = new Rodada(data_fim_apos, com1, Boolean.FALSE);
+            Rodada rod5 = new Rodada(data_fim_apos, com1, "Rodada2", Boolean.FALSE);
             rodadas.add(rod5);
             data_fim_apos = null;
             
@@ -223,7 +223,7 @@ public class ConectaMySQL {
                 System.out.println("Posição: "+ra_obj.getPosicao()+" Nome: "+ra_obj.getNome()+" Pontuação: "+ra_obj.getPontuacao());
             
             
-            //System.gc();*/
+            //System.gc();
             
 }
 }
