@@ -61,9 +61,8 @@ public class ReportRankingGrupo extends HttpServlet
             Integer id_convertido = Integer.parseInt(id);
             CompeticaoDao competicaoDAO = new CompeticaoDao();
             Competicao competicao = competicaoDAO.buscar(id_convertido);
-            titulo = titulo + competicao.getNome();
+            titulo = titulo+competicao.getNome();
             parameters.put("Titulo", titulo);
-
             RankingDao rankingDAO = new RankingDao();
             List<RankingObj> rankings = rankingDAO.listarPorGrupo(competicao);
             //Criando nosso próprio dataSouce que levará os dados ao relatório...
