@@ -9,6 +9,7 @@ import dao.CompeticaoDao;
 import dao.RankingDao;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,15 +29,12 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
  *
  * @author José Luiz
  */
-@WebServlet(name = "ReportRanking", urlPatterns =
-{
-    "/ReportRanking"
-})
-public class ReportRankingApostador extends HttpServlet
-{
+@WebServlet(name = "ReportRankingApostador", urlPatterns = {"/ReportRankingApostador"})
+public class ReportRankingApostador extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -44,10 +42,9 @@ public class ReportRankingApostador extends HttpServlet
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try
+                try
         {
             //Trazendo o arquivo em um objeto File...
             File reportFile = new File(request.getServletContext().getRealPath("/WEB-INF/reportRankingApostador.jasper"));
@@ -99,8 +96,7 @@ public class ReportRankingApostador extends HttpServlet
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -114,8 +110,7 @@ public class ReportRankingApostador extends HttpServlet
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -125,8 +120,7 @@ public class ReportRankingApostador extends HttpServlet
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo()
-    {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

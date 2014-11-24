@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 5.6.2.final using JasperReports Library version 5.6.1  -->
-<!-- 2014-11-23T22:44:20 -->
+<!-- 2014-11-23T23:40:04 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportClientes" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2a2d3e84-6547-40d8-a374-3339429d5abe">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -63,7 +63,7 @@
 			<staticText>
 				<reportElement x="451" y="0" width="123" height="20" uuid="3ffe819b-ee4c-4427-82ae-87b1d374a850"/>
 				<textElement textAlignment="Center">
-					<font fontName="Aria" size="13"/>
+					<font fontName="Arial" size="13"/>
 				</textElement>
 				<text><![CDATA[Pontuação]]></text>
 			</staticText>
