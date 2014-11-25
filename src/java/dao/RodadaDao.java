@@ -83,6 +83,11 @@ public class RodadaDao
     {
         try
         {
+            if (competicao == null)
+            {
+                return null;
+            }
+            
             Session sessao = Hibernate4Util.getSessionFactory();
             Transaction transacao = sessao.beginTransaction();
             Query consulta = sessao.createQuery("SELECT ro "

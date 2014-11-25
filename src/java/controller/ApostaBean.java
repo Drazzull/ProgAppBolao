@@ -29,8 +29,8 @@ public class ApostaBean
 
     ApostaDao apostaDao = new ApostaDao();
     private Aposta aposta = new Aposta();
-    Competicao competicao = new Competicao();
-    Rodada rodada = new Rodada();
+    Competicao competicao;
+    Rodada rodada;
 
     public Aposta getAposta()
     {

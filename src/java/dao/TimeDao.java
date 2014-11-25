@@ -140,6 +140,11 @@ public class TimeDao
     {
         try
         {
+            if (jogo == null)
+            {
+                return null;
+            }
+            
             Session sessao = Hibernate4Util.getSessionFactory();
             Transaction transacao = sessao.beginTransaction();
             Query consulta = sessao.createQuery("SELECT ti1 "
