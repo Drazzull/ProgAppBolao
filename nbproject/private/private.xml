@@ -3,13 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/GitHub/ProgAppBolao/src/java/model/Aposta.java</file>
-            <file>file:/C:/GitHub/ProgAppBolao/src/java/model/Jogo.java</file>
-            <file>file:/C:/GitHub/ProgAppBolao/src/java/converter/CompeticaoConverter.java</file>
             <file>file:/C:/GitHub/ProgAppBolao/src/java/dao/ApostaDao.java</file>
-            <file>file:/C:/GitHub/ProgAppBolao/src/java/dao/RodadaDao.java</file>
+            <file>file:/C:/GitHub/ProgAppBolao/src/java/dao/JogoDao.java</file>
             <file>file:/C:/GitHub/ProgAppBolao/src/java/dao/RankingDao.java</file>
-            <file>file:/C:/GitHub/ProgAppBolao/src/java/model/Rodada.java</file>
+            <file>file:/C:/GitHub/ProgAppBolao/src/java/teste/ConectaMySQL.java</file>
+            <file>file:/C:/GitHub/ProgAppBolao/src/java/dao/ApostadorDao.java</file>
+            <file>file:/C:/GitHub/ProgAppBolao/web/cabecalhoAdministrador.xhtml</file>
         </group>
     </open-files>
 </project-private>
