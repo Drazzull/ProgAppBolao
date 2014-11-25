@@ -13,6 +13,9 @@ import conexao.Hibernate4Util;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import model.Competicao;
+import model.Jogo;
+import model.Rodada;
 import model.Time;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -132,7 +135,35 @@ public class TimeDao
             throw new HibernateException(e);
         }
     }
-    
+
+    public List<Time> listarTimesPorJogo(Jogo jogo)
+    {
+        try
+        {
+            Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
+            Query consulta = sessao.createQuery("SELECT ti1 "
+                    + " FROM Jogo jo"
+                    + " JOIN jo.time1 ti1"
+                    + " WHERE (jo = ?)");
+            consulta.setEntity(0, jogo);
+            List<Time> resultado = consulta.list();
+            consulta = sessao.createQuery("SELECT ti1 "
+                    + " FROM Jogo jo"
+                    + " JOIN jo.time2 ti2"
+                    + " WHERE (jo = ?)");
+            consulta.setEntity(0, jogo);
+            resultado.addAll(consulta.list());
+            transacao.commit();
+            return resultado;
+        }
+        catch (HibernateException e)
+        {
+            System.out.println("Não foi possível selecionar apostadores. Erro: " + e.getMessage());
+            throw new HibernateException(e);
+        }
+    }
+
     public List<Time> listarAuditoria() throws Exception
     {
         try
@@ -159,8 +190,8 @@ public class TimeDao
             throw new Exception("Não foi possível buscar a auditoria. Erro: " + e.getMessage());
         }
     }
-    
-       /**
+
+    /**
      * Busca o código de um time
      *
      * @param valor Código a ser pesquisado
@@ -173,7 +204,7 @@ public class TimeDao
             Session sessao = Hibernate4Util.getSessionFactory();
             Transaction transacao = sessao.beginTransaction();
             Criteria cr = sessao.createCriteria(Time.class);
-            cr.add(Restrictions.eq("codigo",valor));
+            cr.add(Restrictions.eq("codigo", valor));
             Time time = (Time) cr.uniqueResult();
             transacao.commit();
             return time;

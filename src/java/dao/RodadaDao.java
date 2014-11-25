@@ -8,6 +8,7 @@ package dao;
 import conexao.Hibernate4Util;
 import java.util.ArrayList;
 import java.util.List;
+import model.Competicao;
 import model.Rodada;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -74,6 +75,29 @@ public class RodadaDao
         catch (HibernateException e)
         {
             System.out.println("Não foi possível selecionar apostadores. Erro: " + e.getMessage());
+            throw new HibernateException(e);
+        }
+    }
+
+    public List<Rodada> listarRodadasAbertasPorCompeticao(Competicao competicao)
+    {
+        try
+        {
+            Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
+            Query consulta = sessao.createQuery("SELECT ro "
+                    + " FROM Rodada ro"
+                    + " JOIN ro.competicao c"
+                    + " WHERE c = ?"
+                    + " AND (fechada IS NULL) OR (fechada = false)");
+            consulta.setEntity(0, competicao);
+            List<Rodada> resultado = consulta.list();
+            transacao.commit();
+            return resultado;
+        }
+        catch (HibernateException e)
+        {
+            System.out.println("Não foi possível selecionar as rodadas. Erro: " + e.getMessage());
             throw new HibernateException(e);
         }
     }

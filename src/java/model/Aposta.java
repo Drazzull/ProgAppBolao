@@ -74,6 +74,7 @@ public class Aposta implements Serializable
 
     public Aposta()
     {
+        this.dataAposta = new Date(System.currentTimeMillis());
     }
 
     public Integer getCodigo()

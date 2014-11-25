@@ -3,14 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import dao.ApostaDao;
+import dao.JogoDao;
+import dao.RodadaDao;
+import dao.TimeDao;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import model.Aposta;
+import model.Competicao;
+import model.Jogo;
+import model.Rodada;
+import model.Time;
 
 /**
  *
@@ -20,9 +26,11 @@ import model.Aposta;
 @SessionScoped
 public class ApostaBean
 {
-    
+
     ApostaDao apostaDao = new ApostaDao();
     private Aposta aposta = new Aposta();
+    Competicao competicao = new Competicao();
+    Rodada rodada = new Rodada();
 
     public Aposta getAposta()
     {
@@ -33,12 +41,31 @@ public class ApostaBean
     {
         return this.apostaDao.listar();
     }
-    
-    /*public List<Aposta> getAuditoria() throws Exception
-    {
-        return this.apostaDao.listarAuditoria();
-    }*/
 
+    public Competicao getCompeticao()
+    {
+        return competicao;
+    }
+
+    public void setCompeticao(Competicao competicao)
+    {
+        this.competicao = competicao;
+    }
+
+    public Rodada getRodada()
+    {
+        return rodada;
+    }
+
+    public void setRodada(Rodada rodada)
+    {
+        this.rodada = rodada;
+    }
+
+    /*public List<Aposta> getAuditoria() throws Exception
+     {
+     return this.apostaDao.listarAuditoria();
+     }*/
     public String salvar()
     {
         if (this.aposta.isEditando())
@@ -65,5 +92,23 @@ public class ApostaBean
         this.apostaDao.excluir(aposta);
         this.aposta = new Aposta();
         return "listarApostas";
+    }
+
+    public List<Rodada> getRodadasAbertas()
+    {
+        RodadaDao rodadaDao = new RodadaDao();
+        return rodadaDao.listarRodadasAbertasPorCompeticao(this.competicao);
+    }
+
+    public List<Jogo> getJogosRodada()
+    {
+        JogoDao jogoDao = new JogoDao();
+        return jogoDao.listarJogoPorRodada(this.rodada);
+    }
+
+    public List<Time> getTimesJogo()
+    {
+        TimeDao timeDao = new TimeDao();
+        return timeDao.listarTimesPorJogo(this.aposta.getJogo());
     }
 }

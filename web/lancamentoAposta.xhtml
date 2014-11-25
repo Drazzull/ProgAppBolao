@@ -19,11 +19,59 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <c:set var="nav" value="E" scope="session"/>
-        <ui:include src="cabecalho.xhtml"></ui:include>
+        <ui:include src="cabecalhoPublico.xhtml"></ui:include>
         <div id="container">
             <h:form enctype="multipart/form-data">
                 <fieldset>
                     <legend>Dados da Aposta</legend>
+
+                    <h:panelGrid columns="2">
+                        <h:outputLabel for="cmbApostador" value="Apostador" />
+                        <h:selectOneMenu styleClass="form-control" id="cmbApostador"
+                                         value="#{apostaBean.aposta.apostador}"
+                                         converter="apostadorConverter">
+                            <f:selectItem itemLabel="Selecione o Apostador..." />
+                            <f:selectItems value="#{apostadorBean.apostadores}" var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
+                        </h:selectOneMenu>
+                        <h:outputLabel for="cmbCompeticao" value="Competição" />
+                        <h:selectOneMenu styleClass="form-control" id="cmbCompeticao"
+                                         value="#{apostaBean.competicao}"
+                                         converter="competicaoConverter">
+                            <f:selectItem itemLabel="Selecione a Competição..." />
+                            <f:selectItems value="#{competicaoBean.competicoes}" var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
+                            <f:ajax render="@form" />
+                        </h:selectOneMenu>
+                        <h:outputLabel for="cmbRodada" value="Rodada" />
+                        <h:selectOneMenu styleClass="form-control" id="cmbRodada"
+                                         value="#{apostaBean.rodada}"
+                                         converter="rodadaConverter">
+                            <f:selectItem itemLabel="Selecione a Rodada..." />
+                            <f:selectItems value="#{apostaBean.rodadasAbertas}" var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
+                            <f:ajax render="@form" />
+                        </h:selectOneMenu>
+                        <h:outputLabel for="cmbJogo" value="Jogo" />
+                        <h:selectOneMenu styleClass="form-control" id="cmbJogo"
+                                         value="#{apostaBean.aposta.jogo}"
+                                         converter="jogoConverter">
+                            <f:selectItem itemLabel="Selecione o Jogo..." />
+                            <f:selectItems value="#{apostaBean.jogosRodada}" var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
+                            <f:ajax render="@form" />
+                        </h:selectOneMenu>
+
+                        <h:outputLabel value="Placar Time 1" for="txtPlacar1" />
+                        <h:inputText id="txtPlacar1" styleClass="form-control" maxlength="100" value="#{apostaBean.aposta.placarTime1}"/>
+                        <h:outputLabel value="Placar Time 2" for="txtPlacar2" />
+                        <h:inputText id="txtPlacar2" styleClass="form-control" maxlength="100" value="#{apostaBean.aposta.placarTime2}"/>
+                        <h:outputLabel for="cmbVencedor" value="Vencedor" />
+                        <h:selectOneMenu styleClass="form-control" id="cmbVencedor"
+                                         value="#{apostaBean.aposta.vencedor}"
+                                         converter="timeConverter">
+                            <f:selectItem itemLabel="Empate" />
+                            <f:selectItems value="#{apostaBean.timesJogo}" var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
+                        </h:selectOneMenu>
+                        <label>&nbsp; </label>
+                        <h:commandButton id="btnInserir" styleClass="btn btn-default" value="Salvar" action="#{competicaoBean.salvar}"/>
+                    </h:panelGrid>
                 </fieldset>
             </h:form>
         </div>
