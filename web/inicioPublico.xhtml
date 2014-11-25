@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Gerenciamento de Bolão</title>
+        <link rel="stylesheet" type="text/css" href="css/Estilo.css" media="all"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+        <c:set var="nav" value="" scope="session"/>
+        <ui:include src="cabecalhoPublico.xhtml"></ui:include>
+        
+        <div id="container">
+            <h:outputText style="text-align: center;" value="A partir daqui você poderá fazer suas apostas."></h:outputText>
+        </div>
+
+        <script src="js/jquery.min.js"/>
+        <script src="js/funcoes.js"/>
+        <script src="js/bootstrap.min.js"/>
+    </h:body>
+</html>

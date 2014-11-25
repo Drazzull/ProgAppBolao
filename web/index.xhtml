@@ -12,9 +12,25 @@
         <link href="css/bootstrap.min.css" rel="stylesheet"/>
     </h:head>
     <h:body>
-        <c:set var="nav" value="I"/>
-
-        <ui:include src="cabecalho.xhtml"></ui:include>
+        <div id="container">
+            <div id="logo">
+                <h4>Gerenciamento de Bolão</h4>
+                <h4>Unoesc - Joaçaba</h4>
+                <p>Aluno: Arthur Boesing Bilibio</p>
+                <p>Curso: Engenharia de Computação</p>
+                <p>Programação Aplicativos II</p>
+                <p>Professor: Eduardo Comin</p>
+            </div>
+        </div>
+        <div class="tabbable">
+            <div id="container">
+                <ul class="nav nav-pills">
+                    <li><a href="inicioAdministrador.xhtml">Administrador</a></li>
+                    <li><a href="inicioPublico.xhtml">Público</a></li>
+                </ul>
+            </div>
+        </div>
+        <script src="js/funcoes.js"/>
         <div id="container">
             <h:outputText style="text-align: center;" value="Sistema para gerenciamento de bolão, com a opção de categorias, marcas, método
                           de obtenção e até possível lançamento de empréstimos de jogos para amigos."></h:outputText>

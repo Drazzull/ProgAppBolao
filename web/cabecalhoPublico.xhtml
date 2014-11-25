@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <link href="css/Estilo.css" rel="stylesheet" type="text/css" media="all"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <script src="js/bootstrap.min.js"/>
+    </h:head>
+    <h:body>
+        <div id="container">
+            <div id="logo">
+                <h4>Gerenciamento de Bolão</h4>
+                <h4>Unoesc - Joaçaba</h4>
+                <p>Aluno: Arthur Boesing Bilibio</p>
+                <p>Curso: Engenharia de Computação</p>
+                <p>Programação Aplicativos II</p>
+                <p>Professor: Eduardo Comin</p>
+            </div>
+        </div>
+        <div class="tabbable">
+            <div id="container">
+                <ul class="nav nav-pills">
+                    <li class="#{nav == 'I' ? 'active' : ''}"><a href="index.xhtml">Início</a></li>
+
+                    <li class="#{nav == 'C' ? 'dropdown active' : 'dropdown'}">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cadastros<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="cadastroTime.xhtml">Time</a></li>
+                            <li><a href="cadastroGrupo.xhtml">Grupo</a></li>
+                            <li><a href="cadastroApostador.xhtml">Apostador</a></li>
+                            <li><a href="cadastroCompeticao.xhtml">Competição</a></li>
+                            <li><a href="cadastroJogo.xhtml">Jogo</a></li>
+                            <li><a href="cadastroRodada.xhtml">Rodada</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="#{nav == 'E' ? 'dropdown active' : 'dropdown'}">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Lançamentos<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="lancamentoAposta.xhtml">Apostas</a></li>
+                            <li><a href="vinculoCompeticaoTimes.xhtml">Vinculo de Competição e Time</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="#{nav == 'L' ? 'dropdown active' : 'dropdown'}">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Listagens<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="listarTimes.xhtml">Times</a></li>
+                            <li><a href="listarGrupos.xhtml">Grupos</a></li>
+                            <li><a href="listarApostadores.xhtml">Apostadores</a></li>
+                            <li><a href="listarApostas.xhtml">Apostas</a></li>
+                            <li><a href="listarCompeticoes.xhtml">Competições</a></li>
+                            <li><a href="listarJogos.xhtml">Jogos</a></li>
+                            <li><a href="listarRodadas.xhtml">Rodadas</a></li>
+                            <li class="divider"></li>
+                            <li><a href="listarApostadoresAuditoria.xhtml">Auditoria dos Apostadores</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <script src="js/funcoes.js"/>
+    </h:body>
+</html>
