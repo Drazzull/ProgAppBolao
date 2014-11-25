@@ -23,6 +23,53 @@ and open the template in the editor.
             <h:form id="frmPrincipal" styleClass="form-horizontal">
                 <fieldset>
                     <legend>Listagem de Apostas</legend>
+
+                    <h:dataTable id="itens" value="#{apostaBean.apostas}" var="item" border="1" width="100%">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Código" />
+                            </f:facet>
+                            <h:outputText value="#{item.codigo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Apostador" />
+                            </f:facet>
+                            <h:outputText value="#{item.apostador.apelido}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Data de Aposta" />
+                            </f:facet>
+                            <h:outputFormat value="{0, date, dd/MM/YYYY}">
+                                <f:param value="#{item.dataAposta}" />
+                            </h:outputFormat>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Código do Jogo" />
+                            </f:facet>
+                            <h:outputText value="#{item.jogo.codigo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Placar Time 1" />
+                            </f:facet>
+                            <h:outputText value="#{item.placarTime1}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Placar Time 2" />
+                            </f:facet>
+                            <h:outputText value="#{item.placarTime2}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Excluir" />
+                            </f:facet>
+                            <h:commandButton id="btnExcluir" styleClass="btn btn-default" value="Excluir" action="#{apostaBean.excluirItem(item)}"/>
+                        </h:column>
+                    </h:dataTable>
                 </fieldset>
             </h:form>
         </div>

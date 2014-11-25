@@ -23,6 +23,49 @@ and open the template in the editor.
             <h:form id="frmPrincipal" styleClass="form-horizontal">
                 <fieldset>
                     <legend>Listagem de Competições</legend>
+
+                    <h:dataTable id="itens" value="#{competicaoBean.competicoes}" var="item" border="1" width="100%">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Código" />
+                            </f:facet>
+                            <h:outputText value="#{item.codigo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nome" />
+                            </f:facet>
+                            <h:outputText value="#{item.nome}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Data de Início" />
+                            </f:facet>
+                            <h:outputFormat value="{0, date, dd/MM/YYYY}">
+                                <f:param value="#{item.dataInicio}" />
+                            </h:outputFormat>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Data de Fim" />
+                            </f:facet>
+                            <h:outputFormat value="{0, date, dd/MM/YYYY}">
+                                <f:param value="#{item.dataFim}" />
+                            </h:outputFormat>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Editar" />
+                            </f:facet>
+                            <h:commandButton id="btnEditar" styleClass="btn btn-default" value="Editar" action="#{competicaoBean.editarItem(item)}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Excluir" />
+                            </f:facet>
+                            <h:commandButton id="btnExcluir" styleClass="btn btn-default" value="Excluir" action="#{competicaoBean.excluirItem(item)}"/>
+                        </h:column>
+                    </h:dataTable>
                 </fieldset>
             </h:form>
         </div>
