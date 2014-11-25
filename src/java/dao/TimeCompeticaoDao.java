@@ -55,7 +55,7 @@ public class TimeCompeticaoDao
         }
         catch (HibernateException e)
         {
-            System.out.println("Não foi possível selecionar apostadores. Erro: " + e.getMessage());
+            System.out.println("Não foi possível selecionar vinculos de times por competição. Erro: " + e.getMessage());
             throw new HibernateException(e);
         }
     }
@@ -91,7 +91,7 @@ public class TimeCompeticaoDao
         }
         catch (HibernateException e)
         {
-            throw new Exception("Não foi possível buscar a auditoria. Erro: " + e.getMessage());
+            throw new Exception("Não foi possível buscar os vinculos de time por competição. Erro: " + e.getMessage());
         }
     }
 
@@ -109,7 +109,7 @@ public class TimeCompeticaoDao
         }
         catch (HibernateException e)
         {
-            System.out.println("Não foi possível buscar o apostador. Erro: " + e.getMessage());
+            System.out.println("Não foi possível buscar o vinculo de time por competição. Erro: " + e.getMessage());
         }
 
         return null;
@@ -135,9 +135,31 @@ public class TimeCompeticaoDao
         }
         catch (HibernateException e)
         {
-            System.out.println("Não foi possível buscar o apostador. Erro: " + e.getMessage());
+            System.out.println("Não foi possível buscar o vinculo de time por competição. Erro: " + e.getMessage());
         }
 
         return null;
+    }
+
+    public List<TimeCompeticao> listarPorCompeticao(Competicao competicao)
+    {
+        try
+        {
+            Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
+            Query consulta = sessao.createQuery("SELECT tc "
+                    + " FROM TimeCompeticao tc"
+                    + " INNER JOIN tc.competicao AS cm"
+                    + " WHERE (cm = ?)");
+            consulta.setEntity(0, competicao);
+            List<TimeCompeticao> resultado = consulta.list();
+            transacao.commit();
+            return resultado;
+        }
+        catch (HibernateException e)
+        {
+            System.out.println("Não foi possível selecionar o vinculo de time por competição. Erro: " + e.getMessage());
+            throw new HibernateException(e);
+        }
     }
 }

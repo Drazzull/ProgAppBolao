@@ -72,29 +72,14 @@ public class JogoBean
         return "listarJogos";
     }
 
-    public List<Time> getTimesRodada()
+    public List<TimeCompeticao> getTimesRodada()
     {
         if (this.jogo.getRodada() == null)
         {
             return null;
         }
 
-        Competicao competicaoTmp = this.jogo.getRodada().getCompeticao();
-
-        // Obtém a lista de cadastros de times
-        List<Time> listaTimesTmp = this.timeDao.listar();
-        List<Time> listaTimes = this.timeDao.listar();
-        for (Time time : listaTimes)
-        {
-            // Busca a combinação de time/competição, se encontrou é porque o time está vinculado
-            TimeCompeticao timeCompeticaoTemp = this.timeCompeticaoDao.buscarRegistro(time, competicaoTmp);
-            if (timeCompeticaoTemp == null)
-            {
-                listaTimesTmp.remove(time);
-            }
-        }
-
         // retorna a lista atualizada
-        return listaTimesTmp;
+        return this.timeCompeticaoDao.listarPorCompeticao(this.jogo.getRodada().getCompeticao());
     }
 }

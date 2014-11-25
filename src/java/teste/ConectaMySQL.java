@@ -228,15 +228,15 @@ public class ConectaMySQL {
             
             System.gc();
             
-            JogoDao jogoDAO = new JogoDao();
-            jogoDAO.listarJogoPorRodada(rod1);
+            /*JogoDao jogoDAO = new JogoDao();
+            //jogoDAO.listarJogoPorRodada(rod1);
             
             Jogo jogo = new Jogo();
             //apostadorDAO.listarApostadoresDeUmJogo(jogo);
             
             ApostaDao apostaDAO = new ApostaDao();
             apostaDAO.listarApostasApostadorPorJogo(jogo, madara);
-            apostaDAO.listarApostadoresDeUmJogo(jogo);
+            apostaDAO.listarApostadoresDeUmJogo(jogo);*/
             
             
             

@@ -28,12 +28,17 @@ public class ApostaBean
 {
 
     ApostaDao apostaDao = new ApostaDao();
-    private Aposta aposta = new Aposta();
+    Aposta aposta = new Aposta();
     Competicao competicao;
     Rodada rodada;
 
     public Aposta getAposta()
     {
+        if (this.aposta == null)
+        {
+            this.aposta = new Aposta();
+        }
+
         return this.aposta;
     }
 

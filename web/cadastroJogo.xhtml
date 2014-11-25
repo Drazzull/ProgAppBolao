@@ -36,24 +36,24 @@ and open the template in the editor.
                         <h:outputLabel for="cmbTime1" value="Time 1" />
                         <h:selectOneMenu styleClass="form-control" id="cmbTime1"
                                          value="#{jogoBean.jogo.time1}"
-                                         converter="timeConverter">
+                                         converter="timeCompeticaoConverter">
                             <f:selectItem itemLabel="Selecione o time..." />
                             <f:selectItems value="#{jogoBean.timesRodada}"
                                            var="e"
                                            itemValue="#{e}"
-                                           itemLabel="#{e.nome}" />
+                                           itemLabel="#{e.time.nome}" />
                         </h:selectOneMenu>
                         <h:outputLabel value="Placar Time 1" for="txtPlacar1" />
                         <h:inputText id="txtPlacar1" styleClass="form-control" maxlength="100" value="#{jogoBean.jogo.placarTime1}"/>
                         <h:outputLabel for="cmbTime2" value="Time 2" />
                         <h:selectOneMenu styleClass="form-control" id="cmbTime2"
                                          value="#{jogoBean.jogo.time2}"
-                                         converter="timeConverter">
+                                         converter="timeCompeticaoConverter">
                             <f:selectItem itemLabel="Selecione o time..." />
                             <f:selectItems value="#{jogoBean.timesRodada}"
                                            var="e"
                                            itemValue="#{e}"
-                                           itemLabel="#{e.nome}" />
+                                           itemLabel="#{e.time.nome}" />
                         </h:selectOneMenu>
                         <h:outputLabel value="Placar Time 2" for="txtPlacar2" />
                         <h:inputText id="txtPlacar2" styleClass="form-control" maxlength="100" value="#{jogoBean.jogo.placarTime2}"/>
@@ -65,9 +65,9 @@ and open the template in the editor.
                         <h:outputLabel for="cmbVencedor" value="Vencedor" />
                         <h:selectOneMenu styleClass="form-control" id="cmbVencedor"
                                          value="#{jogoBean.jogo.vencedor}"
-                                         converter="timeConverter">
+                                         converter="timeCompeticaoConverter">
                             <f:selectItem itemLabel="Empate" />
-                            <f:selectItems value="#{timeBean.times}" var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
+                            <f:selectItems value="#{jogoBean.timesRodada}" var="e" itemValue="#{e}" itemLabel="#{e.time.nome}" />
                         </h:selectOneMenu>
                         <label>&nbsp; </label>
                         <h:commandButton id="btnInserir" styleClass="btn btn-default" value="Salvar" action="#{competicaoBean.salvar}"/>
