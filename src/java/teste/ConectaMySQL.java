@@ -6,9 +6,11 @@
 package teste;
 
 import conexao.Hibernate4Util;
+import dao.ApostaDao;
 import dao.ApostadorDao;
 import dao.CompeticaoDao;
 import dao.GrupoDao;
+import dao.JogoDao;
 import dao.RankingDao;
 import dao.RodadaDao;
 import dao.TimeDao;
@@ -20,6 +22,7 @@ import java.util.List;
 import model.Apostador;
 import model.Competicao;
 import model.Grupo;
+import model.Jogo;
 import model.Ranking;
 import model.RankingObj;
 import model.Rodada;
@@ -223,7 +226,19 @@ public class ConectaMySQL {
                 System.out.println("Posição: "+ra_obj.getPosicao()+" Nome: "+ra_obj.getNome()+" Pontuação: "+ra_obj.getPontuacao());
             
             
-            //System.gc();
+            System.gc();
+            
+            JogoDao jogoDAO = new JogoDao();
+            jogoDAO.listarJogoPorRodada(rod1);
+            
+            Jogo jogo = new Jogo();
+            //apostadorDAO.listarApostadoresDeUmJogo(jogo);
+            
+            ApostaDao apostaDAO = new ApostaDao();
+            apostaDAO.listarApostasApostadorPorJogo(jogo, madara);
+            apostaDAO.listarApostadoresDeUmJogo(jogo);
+            
+            
             
 }
 }

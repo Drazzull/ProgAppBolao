@@ -13,8 +13,10 @@ import conexao.Hibernate4Util;
 import java.util.ArrayList;
 import java.util.List;
 import model.Apostador;
+import model.Jogo;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -136,5 +138,27 @@ public class ApostadorDao
         }
 
         return null;
+    }
+    
+    public List<Apostador> listarApostadoresDeUmJogo(Jogo jogo){
+        try
+        {
+            Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
+            Query consulta = sessao.createQuery("from Apostador ap "
+                    + " join ap.aposta as a"
+                    + " join a.jogo as j"
+                    + " where j = :jog").setParameter("jog", jogo);
+            List<Apostador> resultado = consulta.list();
+            transacao.commit();
+            
+            return resultado;
+
+        }
+        catch (HibernateException e)
+        {
+            System.out.println("Não foi possível selecionar os apostadores. Erro: " + e.getMessage());
+            throw new HibernateException(e);
+        }
     }
 }

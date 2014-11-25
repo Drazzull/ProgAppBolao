@@ -9,8 +9,10 @@ import conexao.Hibernate4Util;
 import java.util.ArrayList;
 import java.util.List;
 import model.Jogo;
+import model.Rodada;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -113,5 +115,26 @@ public class JogoDao {
         }
 
         return null;
-    }    
+    }
+    
+    public List<Jogo> listarJogoPorRodada(Rodada rodada){
+        try
+        {
+            Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
+            Query consulta = sessao.createQuery("from Jogo j "
+                    + " join j.rodada r"
+                    + " where r = :rod").setParameter("rod", rodada);
+            List<Jogo> resultado = consulta.list();
+            transacao.commit();
+
+            return resultado;
+
+        }
+        catch (HibernateException e)
+        {
+            System.out.println("Não foi possível selecionar os rankings. Erro: " + e.getMessage());
+            throw new HibernateException(e);
+        }
+    }
 }

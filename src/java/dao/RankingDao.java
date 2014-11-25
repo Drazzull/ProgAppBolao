@@ -8,9 +8,13 @@ package dao;
 import conexao.Hibernate4Util;
 import java.util.ArrayList;
 import java.util.List;
+import model.Aposta;
+import model.Apostador;
 import model.Competicao;
+import model.Jogo;
 import model.Ranking;
 import model.RankingObj;
+import model.Rodada;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -145,4 +149,54 @@ public class RankingDao
         return null;
     }
 
+    public void inserirRankingRodada(Rodada rodada){
+        try
+        {
+            Session sessao = Hibernate4Util.getSessionFactory();
+            Transaction transacao = sessao.beginTransaction();
+            ApostaDao apostaDAO = new ApostaDao();
+            ApostadorDao apostadorDAO = new ApostadorDao();
+            JogoDao jogoDAO = new JogoDao();
+            RankingDao rankingDAO = new RankingDao();
+            
+            Ranking[] rankings = new Ranking[apostadorDAO.listar().size()];
+            int i = 0;
+            for(Apostador a : apostadorDAO.listar()){
+                rankings[i] = new Ranking(rodada, a, null);
+                i++;
+            }
+            
+            List<Jogo> jogosDaRodada = jogoDAO.listarJogoPorRodada(rodada);
+            for(Jogo j : jogosDaRodada){
+                List<Apostador> apostadoresDeUmJogo = apostaDAO.listarApostadoresDeUmJogo(j);
+                for(Apostador a : apostadoresDeUmJogo){
+                    List<Aposta> apostasDeUmApostadorEmUmJogo = apostaDAO.listarApostasApostadorPorJogo(j, a);
+                    for(Aposta apos : apostasDeUmApostadorEmUmJogo){
+                        for (Ranking ranking : rankings) {
+                            if(ranking.getApostador() == apos.getApostador()){
+                                if(apos.getPlacarTime1() == j.getPlacarTime1() && apos.getPlacarTime2() == j.getPlacarTime2() && apos.getVencedor() == j.getVencedor().getNome()){
+                                    ranking.setPontuacao(ranking.getPontuacao()+40);
+                                } else if(apos.getVencedor() == j.getVencedor().getNome()){
+                                    ranking.setPontuacao(ranking.getPontuacao()+10);
+                                } else{
+                                    ranking.setPontuacao(ranking.getPontuacao()+0);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            for(Ranking ranking : rankings){
+                if(ranking.getPontuacao() != null)
+                    rankingDAO.salvar(ranking);
+                
+                transacao.commit();
+            }
+            }
+        catch (HibernateException e)
+        {
+            System.out.println("Não foi possível selecionar os rankings. Erro: " + e.getMessage());
+            throw new HibernateException(e);
+        }
+    }
 }
